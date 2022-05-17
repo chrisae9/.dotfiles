@@ -34,19 +34,23 @@ alias wakey='wakeonlan 04:92:26:d8:07:73'
 
 ##SSH
 alias chis='ssh chis'
+
 ##SHORCUTS
 alias ls='ls --color=auto'
 alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
 alias q='exit'
+
 #directory operations
 alias dc='cd ..'
 alias pu='pushd'
 alias po='popd'
+
 #sudo
 alias ssu='sudo su'
 alias sse='sudoedit'
+
 #EDITING
 alias se='sudo vim'
 alias ee=' emacs -nw'
@@ -57,16 +61,11 @@ alias vim='vim'
 alias p='python'
 alias ev='vim ~/.vimrc'
 alias ez='vim ~/.zshrc'
-alias ezl='vim ~/.zshrc.local'
 alias sz='source ~/.zshrc'
 alias hz='vim ~/.histfile'
-#MISTAKES
-#alias sl=ls
-alias sduo=sudo
 
 #OTHER
 alias javaselect='sudo update-alternatives --config java'
-alias datetime='while true; do echo -ne "`date`\r"; done'
 
 #TERMINAL COLOR
 PROMPT="%F{yellow}($SHLVL)%f %F{61}$USERNAME%f%F{silver}|%f%F{cyan}%~%f%F{silver}|%f%F{61}$%f " 
@@ -95,15 +94,7 @@ setopt INC_APPEND_HISTORY  # Append into history
 setopt HIST_IGNORE_DUPS
 setopt EXTENDED_HISTORY  # Save timestamp for history entries
 
-#STUFF
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-    startx
-fi
 
-if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [[ "$SSH_CONNECTION" == "" ]]; then
-#if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux attach -t 0 || tmux new -s 0
-fi
 
 #USE .zshrc.local 
 #FOR LOCAL DEVICE SPECIFICS
@@ -112,11 +103,11 @@ then
     source $HOME/.zshrc.local
 fi
 
-
-export XDG_RUNTIME_DIR=/run/user/$(id -u)
-
+# NVIM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-autoload -U +X bashcompinit && bashcompinit
+# TERRAFORM
 complete -o nospace -C /usr/local/bin/terraform terraform
+
+autoload -U +X bashcompinit && bashcompinit
