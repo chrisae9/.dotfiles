@@ -107,7 +107,4 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# TERRAFORM
-complete -o nospace -C /usr/local/bin/terraform terraform
-
 autoload -U +X bashcompinit && bashcompinit
