@@ -64,6 +64,7 @@ alias ev='vim ~/.vimrc'
 alias ez='vim ~/.zshrc'
 alias sz='source ~/.zshrc'
 alias hz='vim ~/.histfile'
+alias gpg-dry-run='echo "dry run" | gpg --clearsign'
 
 #OTHER
 alias javaselect='sudo update-alternatives --config java'
