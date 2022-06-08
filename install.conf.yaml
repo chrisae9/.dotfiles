@@ -8,9 +8,7 @@
     ~/.zshrc:
         force: true
     ~/.vimrc:
-        relink: true
     ~/.gitconfig:
-        relink: true
         force: true
 
 - shell:
