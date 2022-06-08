@@ -1,0 +1,6 @@
+[user]
+	name = chrisae9
+	email = chrisae9@gmail.com
+	signingkey = 02715F6805A65B23
+[commit]
+	gpgsign = true

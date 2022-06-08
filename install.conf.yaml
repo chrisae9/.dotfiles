@@ -9,6 +9,9 @@
         force: true
     ~/.vimrc:
         relink: true
+    ~/.gitconfig:
+        relink: true
+        force: true
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
