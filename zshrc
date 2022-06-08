@@ -23,9 +23,6 @@ export VISUAL='vim'
 export PAGER='less'
 export GPG_TTY=$(tty)
 
-autoload -Uz add-zsh-hook
-add-zsh-hook preexec _gpg-agent-update-tty
-
 #BINDS
 bindkey "^R" history-incremental-search-backward #ctrl+r search through zsh history
 
