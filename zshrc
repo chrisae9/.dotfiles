@@ -2,6 +2,7 @@
 # CHRIS' ZSH CONFIG #
 #####################
 
+
 #COMPINSTALL
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
@@ -14,6 +15,9 @@ cdpath+=($HOME)
 path+=($HOME/bin)
 path+=($HOME/.local/bin)
 path+=($HOME/gems/bin)
+path+=($HOME/go/bin)
+path+=(/snap/bin)
+path+=($HOME/.deno/bin)
 GEM_HOME=($HOME/gems)
 PKG_CONFIG_PATH=("/usr/lib/pkgconfig")
 
@@ -64,6 +68,8 @@ alias ev='vim ~/.vimrc'
 alias ez='vim ~/.zshrc'
 alias sz='source ~/.zshrc'
 alias hz='vim ~/.histfile'
+alias gf='git fetch'
+alias gp='git pull'
 alias gpg-dry-run='echo "dry run" | gpg --clearsign'
 
 #OTHER
