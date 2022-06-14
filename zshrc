@@ -68,8 +68,14 @@ alias ev='vim ~/.vimrc'
 alias ez='vim ~/.zshrc'
 alias sz='source ~/.zshrc'
 alias hz='vim ~/.histfile'
+
+#GIT
 alias gf='git fetch'
 alias gp='git pull'
+alias gs='git status'
+alias ga='git add --all'
+alias gr='git reset --hard HEAD'
+alias gc='git commit'
 alias gpg-dry-run='echo "dry run" | gpg --clearsign'
 
 #OTHER
