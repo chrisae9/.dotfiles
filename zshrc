@@ -72,7 +72,8 @@ alias hz='vim ~/.histfile'
 
 #GIT
 alias gf='git fetch'
-alias gp='git pull'
+alias gps='git push'
+alias gpl='git pull'
 alias gs='git status'
 alias ga='git add --all'
 alias gr='git reset --hard HEAD'
