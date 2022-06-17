@@ -66,6 +66,7 @@ alias vim='vim'
 alias p='python'
 alias ev='vim ~/.vimrc'
 alias ez='vim ~/.zshrc'
+alias ezl='vim ~/.zshrc.local'
 alias sz='source ~/.zshrc'
 alias hz='vim ~/.histfile'
 
