@@ -9,6 +9,8 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle :compinstall filename '/home/chris/.zshrc'
 autoload -Uz compinit; autoload -U colors && colors; compinit
 
+eval "$(direnv hook zsh)"
+
 #PATH
 setopt auto_cd
 cdpath+=($HOME)
@@ -18,6 +20,7 @@ path+=($HOME/gems/bin)
 path+=($HOME/go/bin)
 path+=(/snap/bin)
 path+=($HOME/.deno/bin)
+path+=(/opt/homebrew/anaconda3/bin)
 GEM_HOME=($HOME/gems)
 PKG_CONFIG_PATH=("/usr/lib/pkgconfig")
 
