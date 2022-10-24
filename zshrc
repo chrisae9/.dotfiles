@@ -82,6 +82,7 @@ alias gpg-dry-run='echo "dry run" | gpg --clearsign'
 
 #OTHER
 alias javaselect='sudo update-alternatives --config java'
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 
 #TERMINAL COLOR
 PROMPT="%F{yellow}($SHLVL)%f %F{61}$USERNAME%f%F{silver}|%f%F{cyan}%~%f%F{silver}|%f%F{61}$%f " 
