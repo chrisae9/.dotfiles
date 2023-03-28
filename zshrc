@@ -65,12 +65,13 @@ alias e='vim'
 alias v='vim'
 alias vi='vim'
 alias vim='vim'
-alias p='python'
+alias p='python3'
 alias ev='vim ~/.vimrc'
 alias ez='vim ~/.zshrc'
 alias ezl='vim ~/.zshrc.local'
 alias sz='source ~/.zshrc'
 alias hz='vim ~/.histfile'
+alias sc='vim ~/.ssh/config'
 
 #GIT
 alias gf='git fetch'
@@ -85,6 +86,7 @@ alias gpg-dry-run='echo "dry run" | gpg --clearsign'
 #OTHER
 alias javaselect='sudo update-alternatives --config java'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
+alias dp='sudo du -h --max-depth=1'
 
 #TERMINAL COLOR
 PROMPT="%F{yellow}($SHLVL)%f %F{61}$USERNAME%f%F{silver}|%f%F{cyan}%~%f%F{silver}|%f%F{61}$%f " 
@@ -130,14 +132,14 @@ autoload -U +X bashcompinit && bashcompinit
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/chris/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/chris/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/chris/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/chris/opt/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/chris/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/chris/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/chris/opt/anaconda3/bin:$PATH"
+        export PATH="/home/chris/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
