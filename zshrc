@@ -41,6 +41,7 @@ alias wakey='wakeonlan 04:92:26:d8:07:73'
 
 ##SSH
 alias chis='ssh chis'
+alias appleclean='find . -iname "._*" -delete'
 
 ##SHORCUTS
 alias ls='ls --color=auto'
