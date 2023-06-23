@@ -77,7 +77,7 @@ alias sc='vim ~/.ssh/config'
 #GIT
 alias gf='git fetch'
 alias gps='git push'
-alias gpl='git pull'
+alias gpu='git pull'
 alias gs='git status'
 alias ga='git add --all'
 alias gr='git reset --hard HEAD'
