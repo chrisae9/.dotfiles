@@ -31,6 +31,7 @@ export GPG_TTY=$(tty)
 
 #BINDS
 bindkey "^R" history-incremental-search-backward #ctrl+r search through zsh history
+bindkey -e
 
 #################
 # ALIAS SECTION #
