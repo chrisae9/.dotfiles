@@ -14,6 +14,7 @@ eval "$(direnv hook zsh)"
 #PATH
 setopt auto_cd
 cdpath+=($HOME)
+cdpath+=(/hdd)
 path+=($HOME/bin)
 path+=($HOME/.local/bin)
 path+=($HOME/gems/bin)
@@ -52,6 +53,8 @@ alias l='ls -CF'
 alias q='exit'
 
 #directory operations
+alias dot='cd $HOME/.dotfiles'
+alias d='/hdd'
 alias dc='cd ..'
 alias pu='pushd'
 alias po='popd'
