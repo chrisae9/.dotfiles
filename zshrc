@@ -87,6 +87,7 @@ alias ga='git add --all'
 alias gr='git reset --hard HEAD'
 alias gc='git commit'
 alias gpg-dry-run='echo "dry run" | gpg --clearsign'
+alias gdr='echo "dry run" | gpg --clearsign'
 
 #OTHER
 alias javaselect='sudo update-alternatives --config java'
