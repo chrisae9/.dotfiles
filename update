@@ -8,6 +8,15 @@ msg() {
 BASEDIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
 cd "${BASEDIR}"
 
+# Fetch remote changes to see if there is a difference
+git fetch
+
+# Check if there are differences between local and remote
+if git diff --quiet HEAD origin/master; then
+    msg 'Local repository is up to date with remote. No need to run update.'
+    exit 0
+fi
+
 msg 'Commit changes...'
 git add -A
 git diff --cached --exit-code &>/dev/null \
