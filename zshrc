@@ -132,3 +132,5 @@ then
     source $HOME/.zshrc.local
 fi
 
+
+~/.dotfiles/update
