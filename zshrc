@@ -132,6 +132,9 @@ then
     source $HOME/.zshrc.local
 fi
 
-
-~/.dotfiles/update
-clear
+#ping google
+if ping -c 1 8.8.8.8 &> /dev/null; then
+    # Run the update script if connected
+    ~/.dotfiles/update
+    clear
+fi
