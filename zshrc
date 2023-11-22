@@ -136,7 +136,6 @@ fi
 if ping -c 1 -W 1 8.8.8.8 &> /dev/null; then
     # Run the update script if connected
     ~/.dotfiles/update
-    clear
 else
     # Warn if unable to connect
     echo "Warning: No/slow internet. Update script will not be ran."
