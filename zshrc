@@ -134,3 +134,4 @@ fi
 
 
 ~/.dotfiles/update
+clear
