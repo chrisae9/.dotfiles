@@ -133,7 +133,7 @@ then
 fi
 
 #ping google
-if ping -c 1 -W 1 8.8.8.8 &> /dev/null; then
+if ping -c 1 -W 1 1.1.1.1 &> /dev/null; then
     # Run the update script if connected
     ~/.dotfiles/update
 else
