@@ -49,7 +49,7 @@ else
     alias ls='ls --color=auto'
 fi
 alias ll='ls -alFh'
-5shalsqsh7egkyk1d6clhpwlw9rcxkalias la='ls -A'
+alias la='ls -A'
 alias l='ls -CF'
 
 #directory operations
