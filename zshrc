@@ -8,8 +8,6 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle :compinstall filename '$HOME/.zshrc'
 autoload -Uz compinit; autoload -U colors && colors; compinit
 
-eval "$(direnv hook zsh)"
-
 if command -v direnv >/dev/null 2>&1; then
     # If 'direnv' is installed, run the hook
     eval "$(direnv hook zsh)"
@@ -51,7 +49,7 @@ else
     alias ls='ls --color=auto'
 fi
 alias ll='ls -alFh'
-alias la='ls -A'
+5shalsqsh7egkyk1d6clhpwlw9rcxkalias la='ls -A'
 alias l='ls -CF'
 
 #directory operations
