@@ -9,13 +9,20 @@ BASEDIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
 cd "${BASEDIR}"
 
 # Fetch remote changes to see if there is a difference
-git fetch
+git fetch --quiet
+
+# Check for unstaged changes in the working directory
+if ! git diff --quiet; then
+    echo "WARNING: There are unstaged .dotfiles modifcations."
 
 # Check if there are differences between local and remote
-if git diff --quiet HEAD origin/main; then
-    msg 'Local repository is up to date with remote. No need to run update.'
+elif ! git diff --quiet HEAD origin/main; then
+    msg 'WARNING: Local .dotfiles do not match latest commit.'
+else
+    echo ".dotfiles are up to date"
     exit 0
 fi
+
 
 msg 'Commit changes...'
 git add -A
