@@ -2,7 +2,6 @@
 # CHRIS' ZSH CONFIG #
 #####################
 
-
 #COMPINSTALL
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
