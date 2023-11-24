@@ -130,11 +130,13 @@ then
     source $HOME/.zshrc.local
 fi
 
-#ping google
-if ping -c 1 -W 1 1.1.1.1 &> /dev/null; then
-    # Run the update script if connected
-    ~/.dotfiles/update
-else
-    # Warn if unable to connect
-    echo "Warning: No/slow internet. Update script will not be ran."
+if [[ $- == *i* ]]; then
+    # If interactive, then check for internet connectivity
+    if ping -c 1 -W 1 1.1.1.1 &> /dev/null; then
+        # Run the update script if connected
+        ~/.dotfiles/update
+    else
+        # Warn if unable to connect
+        echo "Warning: No/slow internet. Update script will not be run."
+    fi
 fi
