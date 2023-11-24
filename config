@@ -1,0 +1,10 @@
+Host chisport
+	user chis
+	hostname server.chis.dev
+	Port 22
+    LocalForward 8384 localhost:8384 #syncthing
+    LocalForward 8088 localhost:8088 #qbitwireguard
+Host chis
+	user chis
+	hostname server.chis.dev
+	Port 22
