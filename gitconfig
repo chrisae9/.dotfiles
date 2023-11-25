@@ -6,3 +6,7 @@
 	gpgsign = true
 [init]
 	defaultBranch = main
+[http]
+	postBuffer = 524288000
+[index]
+	threads = true
