@@ -80,6 +80,15 @@ alias sz='source ~/.zshrc'
 alias hz='vim ~/.histfile'
 alias sc='vim ~/.ssh/config'
 
+#DOCKER
+alias dcd='docker compose down'
+alias dcu='docker compose up'
+alias dcdu='docker compose down && docker compose up'
+
+dcf() {
+        docker-compose -f "$1" up
+}
+
 #GIT
 alias gf='git fetch'
 alias gp='git push'
