@@ -8,3 +8,4 @@ Host chis
 	user chis
 	hostname server.chis.dev
 	Port 22
+    ForwardX11 yes
