@@ -1,6 +1,7 @@
 #####################
 # CHRIS' ZSH CONFIG #
 #####################
+#
 
 #COMPINSTALL
 zstyle ':completion:*' menu select
