@@ -144,6 +144,10 @@ then
     source $HOME/.zshrc.local
 fi
 
+msg() {
+    printf "$(tput bold)%s$(tput sgr0)\n" "$*"
+}
+
 if [[ $- == *i* ]]; then
     # If interactive, then check for internet connectivity
     if ping -c 1 -W 1 1.1.1.1 &> /dev/null; then
@@ -151,6 +155,6 @@ if [[ $- == *i* ]]; then
         ~/.dotfiles/update
     else
         # Warn if unable to connect
-        echo "Warning: No/slow internet. Update script will not be run."
+        msg "Warning: No/slow internet. Update script will not be run."
     fi
 fi
