@@ -91,6 +91,9 @@ dcf() {
         docker-compose -f "$1" up
 }
 
+#vscode
+alias code='code -r .'
+
 #GIT
 alias gf='git fetch'
 alias gp='git push'
