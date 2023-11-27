@@ -155,6 +155,6 @@ if [[ $- == *i* ]]; then
         ~/.dotfiles/update
     else
         # Warn if unable to connect
-        msg "Warning: No/slow internet. Update script will not be run."
+        msg "No/slow internet. Update script will not run."
     fi
 fi

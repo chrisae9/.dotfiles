@@ -13,11 +13,11 @@ git fetch --quiet
 
 # Check for unstaged changes in the working directory
 if ! git diff --quiet; then
-    msg "WARNING: There are unstaged .dotfiles modifcations."
+    msg "There are unstaged .dotfiles modifcations."
 
 # Check if there are differences between local and remote
 elif ! git diff --quiet HEAD origin/main; then
-    msg 'WARNING: Local .dotfiles do not match latest commit.'
+    msg 'Local .dotfiles do not match latest commit.'
 else
     msg ".dotfiles are up to date"
     exit 0
