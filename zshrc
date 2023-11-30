@@ -87,8 +87,12 @@ alias dcd='docker compose down'
 alias dcu='docker compose up'
 alias dcdu='docker compose down && docker compose up'
 
-dcf() {
+dcuf() {
         docker-compose -f "$1" up
+}
+
+dcdf() {
+        docker-compose -f "$1" down
 }
 
 #vscode
