@@ -84,11 +84,11 @@ alias sc='vim ~/.ssh/config'
 
 #DOCKER
 alias dcd='docker compose down'
-alias dcu='docker compose up'
-alias dcdu='docker compose down && docker compose up'
+alias dcu='docker compose up -d'
+alias dcdu='docker compose down && docker compose up -d'
 
 dcuf() {
-        docker-compose -f "$1" up
+        docker-compose -f "$1" up -d
 }
 
 dcdf() {
