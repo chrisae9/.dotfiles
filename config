@@ -9,3 +9,7 @@ Host chis
 	hostname server.chis.dev
 	Port 22
     ForwardX11 yes
+Host help
+    user ansible
+    hostname 10.223.119.67
+    identityfile ~/.ssh/ansible_rsa_decrypted
