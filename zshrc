@@ -60,6 +60,7 @@ alias d='/hdd'
 alias dc='cd ..'
 alias pu='pushd'
 alias po='popd'
+alias cx='chmod +x'
 alias q='exit'
 
 #sudo
