@@ -27,6 +27,8 @@ export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less'
 export GPG_TTY=$(tty)
+export KUBECONFIG=~/.kube/config
+
 
 #BINDS
 bindkey "^R" history-incremental-search-backward #ctrl+r search through zsh history
