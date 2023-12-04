@@ -103,6 +103,9 @@ dcdf() {
 #vscode
 alias code='code -r .'
 
+#KUBECTL
+alias kc='kubectl'
+
 #GIT
 alias gf='git fetch'
 alias gp='git push'
