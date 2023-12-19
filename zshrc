@@ -89,6 +89,7 @@ alias sc='vim ~/.ssh/config'
 
 #DOCKER
 alias dcd='docker compose down'
+alias dck='docker compose kill'
 alias dcu='docker compose up -d'
 alias dcdu='docker compose down && docker compose up -d'
 
