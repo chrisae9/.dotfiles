@@ -60,7 +60,6 @@ alias l='ls -CF'
 #directory operations
 alias dot='cd $HOME/.dotfiles'
 alias c='cd'
-alias d='/hdd'
 alias dc='cd ..'
 alias pu='pushd'
 alias po='popd'
