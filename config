@@ -1,7 +1,7 @@
 Host chisport
 	user chis
 	hostname server.chis.dev
-	Port 22
+	Port 8539
     LocalForward 8384 localhost:8384 #syncthing
     LocalForward 8088 localhost:8088 #qbitwireguard
     LocalForward 8989 localhost:8989 #sonarr
@@ -11,7 +11,7 @@ Host chisport
 Host chis
 	user chis
 	hostname server.chis.dev
-	Port 22
+	Port 8539
     ForwardX11 yes
 Host help
     user ansible
