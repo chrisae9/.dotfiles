@@ -118,6 +118,7 @@ alias gd='git diff'
 alias gco='git checkout'
 alias gcb='git checkout -b'
 alias gst='git stash'
+alias gda="git for-each-ref --format '%(refname:short)' refs/heads | grep -v "master\|main" | xargs git branch -D"
 alias gstp'git stash pop'
 alias gaa='git add --all'
 alias gr='git reset HEAD^'
