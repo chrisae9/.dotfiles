@@ -116,7 +116,7 @@ alias code='code -r .'
 #AWS//KUBECTL
 alias kc='kubectl'
 alias kx='kubectx'
-alias ke'kubens'
+alias ke='kubens'
 alias list-clusters='aws eks list-clusters'
 alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
 
