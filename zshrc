@@ -92,6 +92,7 @@ alias dck='docker compose kill'
 alias dcu='docker compose up -d'
 alias dcdu='docker compose down && docker compose up -d'
 
+
 dcuf() {
         docker-compose -f "$1" up -d
 }
@@ -103,8 +104,10 @@ dcdf() {
 #vscode
 alias code='code -r .'
 
-#KUBECTL
+#AWS//KUBECTL
 alias kc='kubectl'
+alias list-clusters='aws eks list-clusters'
+alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
 
 #GIT
 alias gf='git fetch'
