@@ -23,8 +23,6 @@ if command -v direnv >/dev/null 2>&1; then
     eval "$(direnv hook zsh)"
 fi
 
-# source <(kubectl completion zsh)
-
 #PATH
 setopt auto_cd
 cdpath+=($HOME)
@@ -114,6 +112,13 @@ dcdf() {
 alias code='code -r .'
 
 #AWS//KUBECTL
+
+# get zsh complete kubectl
+command -v kubectl >/dev/null 2>&1 && source <(kubectl completion zsh)
+alias kubectl=kubecolor
+# make completion work with kubecolor
+compdef kubecolor=kubectl
+
 command -v kubecolor >/dev/null 2>&1 && alias kubectl="kubecolor"
 alias kc='kubectl'
 alias kx='kubectx'
