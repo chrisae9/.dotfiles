@@ -114,7 +114,7 @@ dcdf() {
 alias code='code -r .'
 
 #AWS//KUBECTL
-alias kubectl='kubecolor'
+command -v kubecolor >/dev/null 2>&1 && alias kubectl="kubecolor"
 alias kc='kubectl'
 alias kx='kubectx'
 alias ke='kubens'
