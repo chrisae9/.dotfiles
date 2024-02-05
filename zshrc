@@ -128,8 +128,8 @@ alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
 
 #GIT
 alias gf='git fetch'
-alias gp='git push'
-alias gl='git pull'
+alias gps='git push'
+alias gpl='git pull'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
