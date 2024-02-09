@@ -113,18 +113,29 @@ alias code='code -r .'
 
 #AWS//KUBECTL
 
-# get zsh complete kubectl
-command -v kubectl >/dev/null 2>&1 && source <(kubectl completion zsh)
-alias kubectl=kubecolor
-# make completion work with kubecolor
-compdef kubecolor=kubectl
+# Check if kubectl is available and configure its completion
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion zsh) # Setup completion for kubectl
+fi
 
-command -v kubecolor >/dev/null 2>&1 && alias kubectl="kubecolor"
+# Alias kubectl to kubecolor only if kubecolor is installed
+if command -v kubecolor >/dev/null 2>&1; then
+  alias kubectl="kubecolor"
+  # Ensure kubecolor uses kubectl's completions
+  compdef kubecolor=kubectl
+else
+  # Optional: Alert that kubecolor is not installed, can be commented out or removed
+  echo "kubecolor not found, defaulting to kubectl"
+  alias kubectl="kubectl"
+fi
+
+# Other aliases
 alias kc='kubectl'
 alias kx='kubectx'
 alias ke='kubens'
 alias list-clusters='aws eks list-clusters'
 alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
+
 
 #GIT
 alias gf='git fetch'
