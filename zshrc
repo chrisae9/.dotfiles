@@ -125,7 +125,7 @@ if command -v kubecolor >/dev/null 2>&1; then
   compdef kubecolor=kubectl
 else
   # Optional: Alert that kubecolor is not installed, can be commented out or removed
-  echo "kubecolor not found, defaulting to kubectl"
+  #echo "kubecolor not found, defaulting to kubectl"
   alias kubectl="kubectl"
 fi
 
