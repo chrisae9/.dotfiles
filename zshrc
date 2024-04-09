@@ -135,6 +135,7 @@ alias kx='kubectx'
 alias ke='kubens'
 alias list-clusters='aws eks list-clusters'
 alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
+alias nmaptest='nmap -p 443 --script ssl-enum-ciphers $1'
 
 
 #GIT
