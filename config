@@ -8,6 +8,7 @@ Host chisport
     LocalForward 7878 localhost:7878 #radarr
     LocalForward 6767 localhost:6767 #bazarr
     LocalForward 9696 localhost:9696 #prowlarr
+    LocalForward 8181 localhost:8181 #tautulli
 Host chis
 	user chis
 	hostname server.chis.dev
@@ -21,3 +22,6 @@ Host issues
     user ansible
     hostname 10.20.110.57
     identityfile ~/.ssh/ansible_rsa_decrypted
+Host deck
+    user deck
+    hostname chisdeck
