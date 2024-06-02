@@ -14,14 +14,6 @@ Host chis
 	hostname server.chis.dev
 	Port 8539
     ForwardX11 yes
-Host help
-    user ansible
-    hostname 10.223.119.67
-    identityfile ~/.ssh/ansible_rsa_decrypted
-Host issues
-    user ansible
-    hostname 10.20.110.57
-    identityfile ~/.ssh/ansible_rsa_decrypted
 Host deck
     user deck
     hostname chisdeck
