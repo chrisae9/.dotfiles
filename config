@@ -13,7 +13,7 @@ Host chis
 	user chis
 	hostname server.chis.dev
 	Port 8539
-    ForwardX11 yes
+   #ForwardX11 yes
 Host deck
     user deck
     hostname chisdeck
