@@ -71,6 +71,7 @@ alias dc='cd ..'
 alias pu='pushd'
 alias po='popd'
 alias cx='chmod +x'
+alias co='chown $(whoami):$(whoami)'
 alias q='exit'
 
 #sudo
