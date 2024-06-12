@@ -134,7 +134,7 @@ else
 fi
 
 # Other aliases
-alias kc='kubectl'
+alias k='kubectl'
 alias kx='kubectx'
 alias ke='kubens'
 alias list-clusters='aws eks list-clusters'
