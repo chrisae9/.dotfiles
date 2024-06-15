@@ -8,41 +8,99 @@ msg() {
 BASEDIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
 cd "${BASEDIR}"
 
+# Function to prompt for commit message
+prompt_commit_message() {
+    msg "Enter commit message (leave blank to skip):"
+    read -r commit_message
+    echo "$commit_message"
+}
+
 # Fetch remote changes to see if there is a difference
 git fetch --quiet
 
-# Check for unstaged changes in the working directory
-if ! git diff --quiet; then
-    msg "There are unstaged .dotfiles modifcations."
-
-# Check if there are differences between local and remote
-elif ! git diff --quiet HEAD origin/main; then
-    msg 'Local .dotfiles do not match latest commit.'
-else
-    msg ".dotfiles are up to date"
-    exit 0
+# Attempt to push any existing commits
+if ! git diff --quiet origin/main..HEAD; then
+    msg "There are unpushed commits. Attempting to push..."
+    git push || { msg "Failed to push commits. Please check your network connection and try again."; exit 1; }
 fi
 
+# Check for unstaged or staged but uncommitted changes
+if ! git diff --quiet || ! git diff --cached --quiet; then
+    msg "There are local changes that need to be committed."
 
-msg 'Commit changes...'
-git add -A
-git diff --cached --exit-code &>/dev/null \
-    || git commit
+    # Stage all changes
+    git add -A
 
-msg 'Pull remote changes...'
-git pull
+    # Prompt for commit message
+    commit_message=$(prompt_commit_message)
 
-msg 'Update submodules...'
-git submodule update --remote
+    if [ -n "$commit_message" ]; then
+        msg "Committing changes..."
+        git commit -m "$commit_message"
+    else
+        msg "No commit message provided. Skipping commit."
+        exit 0
+    fi
+fi
 
-msg 'Commit submodule changes...'
-git add -A
-git diff --cached --exit-code &>/dev/null \
-    || git commit -m "Update remotes @ $(date -u -Is)"
+# Check if local is ahead of remote
+if ! git diff --quiet HEAD origin/main; then
+    LOCAL_AHEAD=true
+else
+    LOCAL_AHEAD=false
+fi
 
-msg 'Push local changes...'
-git push
+# Check if remote is ahead of local
+if ! git diff --quiet origin/main HEAD; then
+    REMOTE_AHEAD=true
+else
+    REMOTE_AHEAD=false
+fi
 
-msg 'Install...'
-./install
+# Handle different scenarios
+if [ "$LOCAL_AHEAD" = true ] && [ "$REMOTE_AHEAD" = true ]; then
+    msg "Both local and remote have changes. Please resolve conflicts manually."
+    exit 1
+elif [ "$LOCAL_AHEAD" = true ]; then
+    msg "Local changes detected. Pushing local changes..."
+
+    msg "Pulling remote changes..."
+    git pull --rebase
+
+    msg "Updating submodules..."
+    git submodule update --init --recursive --remote
+
+    msg "Committing submodule changes..."
+    git add -A
+    git diff --cached --exit-code &>/dev/null || git commit -m "Update submodules @ $(date -u -Is)"
+
+    msg "Pushing local changes..."
+    git push
+elif [ "$REMOTE_AHEAD" = true ]; then
+    msg "Remote changes detected. Updating local repository."
+
+    msg "Pulling remote changes..."
+    git pull --rebase
+
+    msg "Updating submodules..."
+    git submodule update --init --recursive --remote
+
+    msg "Committing submodule changes..."
+    git add -A
+    git diff --cached --exit-code &>/dev/null || git commit -m "Update submodules @ $(date -u -Is)"
+
+    msg "Pushing local changes..."
+    git push
+else
+    msg ".dotfiles are up to date."
+fi
+
+# Run install script
+msg "Running install script..."
+if [[ -x "./install" ]]; then
+    ./install
+else
+    msg "Install script not found or not executable."
+    exit 1
+fi
 

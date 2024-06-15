@@ -34,7 +34,9 @@ alias p='python3'
 alias e='vim'
 alias ev='vim ~/.vimrc'
 alias ez='vim ~/.zshrc'
+alias eu='vim ~/.dotfiles/update'
 alias uz='~/.dotfiles/update'
+alias dot='cd ~/.dotfiles'
 alias ezl='vim ~/.zshrc.local'
 alias sz='source ~/.zshrc'
 alias hz='vim ~/.histfile'
@@ -94,18 +96,17 @@ fi
 # Kubernetes configurations
 if command -v kubectl >/dev/null 2>&1; then
   source <(kubectl completion zsh)
+  alias k='kubectl'
+  alias kx='kubectx'
+  alias ke='kubens'
 fi
 
+# Alias kubectl to kubecolor only if kubecolor is installed
 if command -v kubecolor >/dev/null 2>&1; then
   alias kubectl="kubecolor"
   compdef kubecolor=kubectl
-else
-  alias kubectl="kubectl"
 fi
 
-alias k='kubectl'
-alias kx='kubectx'
-alias ke='kubens'
 alias list-clusters='aws eks list-clusters'
 alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
 
