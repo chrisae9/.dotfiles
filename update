@@ -10,16 +10,8 @@ get_commit_message() {
     echo "$commit_msg"
 }
 
-BASEDIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
-cd "${BASEDIR}"
-
-# Fetch remote changes to see if there is a difference
-git fetch --quiet
-
-# Check for unstaged changes in the working directory
-if ! git diff --quiet; then
-    msg "There are unstaged .dotfiles modifications."
-    msg 'Commit changes...'
+commit_changes() {
+    msg "Commit changes..."
     git add -A
     if ! git diff --cached --quiet; then
         commit_msg=$(get_commit_message)
@@ -32,17 +24,23 @@ if ! git diff --quiet; then
     else
         msg "No changes to commit."
     fi
+}
+
+BASEDIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
+cd "${BASEDIR}"
+
+# Fetch remote changes to see if there is a difference
+git fetch --quiet
+
+# Check for unstaged changes in the working directory
+if ! git diff --quiet; then
+    msg "There are unstaged .dotfiles modifications."
+    commit_changes
 
 # Check if there are staged but uncommitted changes
 elif ! git diff --cached --quiet; then
     msg "There are staged .dotfiles modifications."
-    commit_msg=$(get_commit_message)
-    if [ -n "$commit_msg" ]; then
-        git commit -m "$commit_msg"
-    else
-        msg "Changes not committed."
-        exit 1
-    fi
+    commit_changes
 
 # Check if there are differences between local and remote
 elif ! git diff --quiet HEAD origin/main; then
@@ -59,22 +57,10 @@ msg 'Update submodules...'
 git submodule update --remote
 
 msg 'Commit submodule changes...'
-git add -A
-if ! git diff --cached --quiet; then
-    commit_msg=$(get_commit_message)
-    if [ -n "$commit_msg" ]; then
-        git commit -m "Update remotes @ $(date -u -Is)"
-    else
-        msg "Submodule changes not committed."
-        exit 1
-    fi
-else
-    msg "No submodule changes to commit."
-fi
+commit_changes
 
 msg 'Push local changes...'
 git push
 
 msg 'Install...'
 ./install
-
