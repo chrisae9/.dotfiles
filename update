@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-#testing failed commit
+
 msg() {
     printf "$(tput bold)%s$(tput sgr0)\n" "$*"
 }
@@ -73,7 +73,7 @@ else
 fi
 
 msg 'Push local changes...'
-git push
+#git push
 
 msg 'Install...'
 ./install
