@@ -18,24 +18,21 @@ prompt_commit_message() {
 # Fetch remote changes to see if there is a difference
 git fetch --quiet
 
-# Attempt to push any existing commits
-if ! git diff --quiet origin/main..HEAD; then
-    msg "There are unpushed commits. Attempting to push..."
-    git push || { msg "Failed to push commits. Please check your network connection and try again."; exit 1; }
+# Check for unstaged changes and stage them
+if ! git diff --quiet; then
+    msg "There are unstaged .dotfiles modifications. Staging them now..."
+    git add -A
 fi
 
-# Check for unstaged or staged but uncommitted changes
-if ! git diff --quiet || ! git diff --cached --quiet; then
-    msg "There are local changes that need to be committed."
-
-    # Stage all changes
-    git add -A
+# Check for staged but uncommitted changes
+if ! git diff --cached --quiet; then
+    msg "There are staged but uncommitted changes."
 
     # Prompt for commit message
     commit_message=$(prompt_commit_message)
 
     if [ -n "$commit_message" ]; then
-        msg "Committing changes..."
+        msg "Committing staged changes..."
         git commit -m "$commit_message"
 
         # Push the commit
@@ -91,20 +88,5 @@ elif [ "$LOCAL_AHEAD" = true ]; then
 
     msg "Committing submodule changes..."
     git add -A
-    git diff --cached --exit-code &>/dev/null || git commit -m "Update submodules @ $(date -u -Is)"
-
-    msg "Pushing local changes..."
-    git push
-else
-    msg ".dotfiles are up to date."
-fi
-
-# Run install script
-msg "Running install script..."
-if [[ -x "./install" ]]; then
-    ./install
-else
-    msg "Install script not found or not executable."
-    exit 1
-fi
+    git diff --cached --exit-code &>/
 
