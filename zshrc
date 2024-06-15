@@ -1,6 +1,7 @@
 #####################
 # CHRIS' ZSH CONFIG #
 #####################
+#testing
 
 # Environment Variables
 export ZSH="$HOME/.dotfiles/oh-my-zsh"
