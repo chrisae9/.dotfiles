@@ -11,7 +11,7 @@ cd "${BASEDIR}"
 # Function to prompt for commit message
 prompt_commit_message() {
     msg "Enter commit message (leave blank to skip):"
-    read -r commit_message
+    read -rp "> " commit_message
     echo "$commit_message"
 }
 
@@ -61,8 +61,8 @@ fi
 if [ "$LOCAL_AHEAD" = true ] && [ "$REMOTE_AHEAD" = true ]; then
     msg "Both local and remote have changes. Please resolve conflicts manually."
     exit 1
-elif [ "$LOCAL_AHEAD" = true ]; then
-    msg "Local changes detected. Pushing local changes..."
+elif [ "$REMOTE_AHEAD" = true ]; then
+    msg "Remote changes detected. Updating local repository."
 
     msg "Pulling remote changes..."
     git pull --rebase
@@ -76,11 +76,8 @@ elif [ "$LOCAL_AHEAD" = true ]; then
 
     msg "Pushing local changes..."
     git push
-elif [ "$REMOTE_AHEAD" = true ]; then
-    msg "Remote changes detected. Updating local repository."
-
-    msg "Pulling remote changes..."
-    git pull --rebase
+elif [ "$LOCAL_AHEAD" = true ]; then
+    msg "Local changes detected. Pushing local changes..."
 
     msg "Updating submodules..."
     git submodule update --init --recursive --remote
