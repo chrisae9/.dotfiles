@@ -8,85 +8,40 @@ msg() {
 BASEDIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
 cd "${BASEDIR}"
 
-# Function to prompt for commit message
-prompt_commit_message() {
-    msg "Enter commit message (leave blank to skip):"
-    read -rp "> " commit_message
-    echo "$commit_message"
-}
-
 # Fetch remote changes to see if there is a difference
 git fetch --quiet
 
-# Check for unstaged changes and stage them
+# Check for unstaged changes in the working directory
 if ! git diff --quiet; then
-    msg "There are unstaged .dotfiles modifications. Staging them now..."
-    git add -A
-fi
+    msg "There are unstaged .dotfiles modifcations."
 
-# Check for staged but uncommitted changes
-if ! git diff --cached --quiet; then
-    msg "There are staged but uncommitted changes."
-
-    # Prompt for commit message
-    commit_message=$(prompt_commit_message)
-
-    if [ -n "$commit_message" ]; then
-        msg "Committing staged changes..."
-        git commit -m "$commit_message"
-
-        # Push the commit
-        msg "Pushing local changes..."
-        git push || { msg "Failed to push commits. Please check your network connection and try again."; exit 1; }
-    else
-        msg "No commit message provided. Skipping commit."
-        exit 0
-    fi
-fi
-
-# Fetch again to make sure we have the latest changes
-git fetch --quiet
-
-# Check if local is ahead of remote
-if ! git diff --quiet HEAD origin/main; then
-    LOCAL_AHEAD=true
+# Check if there are differences between local and remote
+elif ! git diff --quiet HEAD origin/main; then
+    msg 'Local .dotfiles do not match latest commit.'
 else
-    LOCAL_AHEAD=false
+    msg ".dotfiles are up to date"
+    exit 0
 fi
 
-# Check if remote is ahead of local
-if ! git diff --quiet origin/main HEAD; then
-    REMOTE_AHEAD=true
-else
-    REMOTE_AHEAD=false
-fi
 
-# Handle different scenarios
-if [ "$LOCAL_AHEAD" = true ] && [ "$REMOTE_AHEAD" = true ]; then
-    msg "Both local and remote have changes. Please resolve conflicts manually."
-    exit 1
-elif [ "$REMOTE_AHEAD" = true ]; then
-    msg "Remote changes detected. Updating local repository."
+msg 'Commit changes...'
+git add -A
+git diff --cached --exit-code &>/dev/null \
+    || git commit
 
-    msg "Pulling remote changes..."
-    git pull --rebase
+msg 'Pull remote changes...'
+git pull
 
-    msg "Updating submodules..."
-    git submodule update --init --recursive --remote
+msg 'Update submodules...'
+git submodule update --remote
 
-    msg "Committing submodule changes..."
-    git add -A
-    git diff --cached --exit-code &>/dev/null || git commit -m "Update submodules @ $(date -u -Is)"
+msg 'Commit submodule changes...'
+git add -A
+git diff --cached --exit-code &>/dev/null \
+    || git commit -m "Update remotes @ $(date -u -Is)"
 
-    msg "Pushing local changes..."
-    git push
-elif [ "$LOCAL_AHEAD" = true ]; then
-    msg "Local changes detected. Pushing local changes..."
+msg 'Push local changes...'
+git push
 
-    msg "Updating submodules..."
-    git submodule update --init --recursive --remote
-
-    msg "Committing submodule changes..."
-    git add -A
-    git diff --cached --exit-code &>/
-
+msg 'Install...'
+./install
