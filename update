@@ -5,6 +5,11 @@ msg() {
     printf "$(tput bold)%s$(tput sgr0)\n" "$*"
 }
 
+get_commit_message() {
+    read -r -p "Enter commit message (leave empty to cancel): " commit_msg
+    echo "$commit_msg"
+}
+
 BASEDIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
 cd "${BASEDIR}"
 
@@ -13,7 +18,31 @@ git fetch --quiet
 
 # Check for unstaged changes in the working directory
 if ! git diff --quiet; then
-    msg "There are unstaged .dotfiles modifcations."
+    msg "There are unstaged .dotfiles modifications."
+    msg 'Commit changes...'
+    git add -A
+    if ! git diff --cached --quiet; then
+        commit_msg=$(get_commit_message)
+        if [ -n "$commit_msg" ]; then
+            git commit -m "$commit_msg"
+        else
+            msg "Changes not committed."
+            exit 1
+        fi
+    else
+        msg "No changes to commit."
+    fi
+
+# Check if there are staged but uncommitted changes
+elif ! git diff --cached --quiet; then
+    msg "There are staged .dotfiles modifications."
+    commit_msg=$(get_commit_message)
+    if [ -n "$commit_msg" ]; then
+        git commit -m "$commit_msg"
+    else
+        msg "Changes not committed."
+        exit 1
+    fi
 
 # Check if there are differences between local and remote
 elif ! git diff --quiet HEAD origin/main; then
@@ -23,12 +52,6 @@ else
     exit 0
 fi
 
-
-msg 'Commit changes...'
-git add -A
-git diff --cached --exit-code &>/dev/null \
-    || git commit
-
 msg 'Pull remote changes...'
 git pull
 
@@ -37,11 +60,21 @@ git submodule update --remote
 
 msg 'Commit submodule changes...'
 git add -A
-git diff --cached --exit-code &>/dev/null \
-    || git commit -m "Update remotes @ $(date -u -Is)"
+if ! git diff --cached --quiet; then
+    commit_msg=$(get_commit_message)
+    if [ -n "$commit_msg" ]; then
+        git commit -m "Update remotes @ $(date -u -Is)"
+    else
+        msg "Submodule changes not committed."
+        exit 1
+    fi
+else
+    msg "No submodule changes to commit."
+fi
 
 msg 'Push local changes...'
 git push
 
 msg 'Install...'
 ./install
+
