@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-
+#testing failed commit
 msg() {
     printf "$(tput bold)%s$(tput sgr0)\n" "$*"
 }
