@@ -37,11 +37,18 @@ if ! git diff --quiet || ! git diff --cached --quiet; then
     if [ -n "$commit_message" ]; then
         msg "Committing changes..."
         git commit -m "$commit_message"
+
+        # Push the commit
+        msg "Pushing local changes..."
+        git push || { msg "Failed to push commits. Please check your network connection and try again."; exit 1; }
     else
         msg "No commit message provided. Skipping commit."
         exit 0
     fi
 fi
+
+# Fetch again to make sure we have the latest changes
+git fetch --quiet
 
 # Check if local is ahead of remote
 if ! git diff --quiet HEAD origin/main; then
