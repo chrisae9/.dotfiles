@@ -73,7 +73,7 @@ else
 fi
 
 msg 'Push local changes...'
-#git push
+git push
 
 msg 'Install...'
 ./install
