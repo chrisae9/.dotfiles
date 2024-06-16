@@ -4,7 +4,7 @@ RPROMPT='$(git_prompt_info)'
 function extra {
     if [[ -n "$AWS_VAULT" ]]; then
         echo "$AWS_VAULT
-        "
+"
     fi
 }
 

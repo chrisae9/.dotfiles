@@ -96,6 +96,12 @@ if [[ -n $commands[kubecolor] ]]; then
   compdef kubecolor=kubectl
 fi
 
+# aws-vault
+if [[ -n $commands[aws-vault] ]]; then
+  alias av="aws-vault"
+fi
+
+
 alias list-clusters='aws eks list-clusters'
 alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
 
