@@ -1,10 +1,10 @@
 PROMPT='%{$fg[blue]%}[%{$reset_color%}%{$fg[magenta]%}%~%{$reset_color%}%{$fg[blue]%}]%{$reset_color%}$(extra)
- %{$fg[blue]%}>%{$reset_color%} '
-RPROMPT='$(git_prompt_info)'
+ %{$fg[blue]%}>%{$reset_color%} %{$reset_color%}'
+RPROMPT='%{$reset_color%}$(git_prompt_info)%{$reset_color%}'
 
 function extra {
     if [[ -n "$AWS_VAULT" ]]; then
-        echo "%{$fg[yellow]%}[%{$reset_color%}%{$fg[red]%}$AWS_VAULT%{$reset_color%}%{$fg[yellow]%}]%{$reset_color%} $(kube_ps1)"
+        echo "%{$fg[yellow]%}[%{$reset_color%}%{$fg[red]%}$AWS_VAULT%{$reset_color%}%{$fg[yellow]%}]%{$reset_color%} $(kube_ps1)%{$reset_color%}"
     fi
 }
 
