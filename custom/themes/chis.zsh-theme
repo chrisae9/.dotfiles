@@ -8,7 +8,9 @@ function extra {
         return 1
     fi
 
-    if [[-n get_cluster_short()]]; then
+    local cluster_short
+    cluster_short=$(get_cluster_short)
+    if [[ -n "$cluster_short" ]]; then
         echo -n "%{$reset_color%} $(kube_ps1)%{$reset_color%}"
         return 0
     fi
