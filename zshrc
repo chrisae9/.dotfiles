@@ -15,7 +15,7 @@ export SAVEHIST=10000  # Number of history entries to save
 # Source Oh My Zsh
 ZSH_CUSTOM=~/.dotfiles/custom
 ZSH_THEME="chis"
-plugins=(git brew direnv kube-ps1 kubectl kubectx zsh-autosuggestions emoji sudo)
+plugins=(git brew direnv kube-ps1 kubectl kubectx zsh-autosuggestions emoji sudo aws-vault)
 source $ZSH/oh-my-zsh.sh
 
 # Custom Aliases
@@ -65,12 +65,6 @@ alias gr='git reset HEAD^'
 alias grh='git reset --hard HEAD'
 alias grh1='git reset --hard HEAD~1'
 alias gdr='echo "dry run" | gpg --clearsign'
-
-if [[ -n $commands[aws-vault] ]]; then
-    eval "$(aws-vault --completion-script-zsh)"
-    alias av="aws-vault"
-    compdef av=aws-vault
-fi
 
 # Paths
 cdpath+=($HOME)
