@@ -4,7 +4,13 @@ RPROMPT='%{$reset_color%}$(git_prompt_info)%{$reset_color%}'
 
 function extra {
     if [[ -n "$AWS_VAULT" ]]; then
-        echo "%{$fg[yellow]%}[%{$reset_color%}%{$fg[red]%}$AWS_VAULT%{$reset_color%}%{$fg[yellow]%}]%{$reset_color%} $(kube_ps1)%{$reset_color%}"
+        echo -n "%{$fg[yellow]%}[%{$reset_color%}%{$fg[red]%}$AWS_VAULT%{$reset_color%}%{$fg[yellow]%}]"
+        return 1
+    fi
+
+    if [[-n get_cluster_short()]]; then
+        echo -n "%{$reset_color%} $(kube_ps1)%{$reset_color%}"
+        return 0
     fi
 }
 
