@@ -13,9 +13,11 @@ export HISTSIZE=10000  # Maximum number of history entries
 export SAVEHIST=10000  # Number of history entries to save
 
 # Source Oh My Zsh
+ZSH_CUSTOM=~/.dotfiles/custom
 ZSH_THEME="simple"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
+
 
 # Custom Aliases
 alias chis='ssh chis'
