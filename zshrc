@@ -120,6 +120,23 @@ function select-cluster {
     done
 }
 
+function select-env {
+    # Get the list of namespaces using kubens
+    namespaces=($(kubens | tail -n +2))
+    
+    PS3="Select a namespace: "
+    select namespace in "${namespaces[@]}"; do
+        if [ -n "$namespace" ]; then
+            echo "Selected namespace: $namespace"
+            export SELECTED_NAMESPACE=$namespace
+            kubens "$namespace"
+            break
+        else
+            echo "Invalid selection. Please try again."
+        fi
+    done
+}
+
 # Local device specifics
 if [[ -f "$HOME/.zshrc.local" ]]; then
     source "$HOME/.zshrc.local"
