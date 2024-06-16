@@ -84,10 +84,9 @@ setopt SHARE_HISTORY
 
 # Kubernetes configurations
 if [[ -n $commands[kubectl] ]]; then
-#   source <(kubectl completion zsh)
-#   alias k='kubectl'
   alias kx='kubectx'
   alias ke='kubens'
+  compdef ke=kubens
 fi
 
 # Alias kubectl to kubecolor only if kubecolor is installed
