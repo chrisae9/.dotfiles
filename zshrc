@@ -65,8 +65,11 @@ alias gr='git reset HEAD^'
 alias grh='git reset --hard HEAD'
 alias grh1='git reset --hard HEAD~1'
 alias gdr='echo "dry run" | gpg --clearsign'
-alias av="aws-vault"
 
+if [[ -n $commands[aws-vault] ]]; then
+    eval "$(aws-vault --completion-script-zsh)"
+    alias av="aws-vault"
+fi
 
 # Paths
 cdpath+=($HOME)
