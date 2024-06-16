@@ -1,10 +1,10 @@
-PROMPT='%{$fg[magenta]%}%~%{$reset_color%} $(extra)$ '
+PROMPT='%{$fg[magenta]%}%~%{$reset_color%} $(extra)
+$ '
 RPROMPT='$(git_prompt_info)'
 
 function extra {
     if [[ -n "$AWS_VAULT" ]]; then
-        echo "$AWS_VAULT
-        "
+        echo "$AWS_VAULT"
     fi
 }
 
