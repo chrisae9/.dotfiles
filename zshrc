@@ -65,6 +65,8 @@ alias gr='git reset HEAD^'
 alias grh='git reset --hard HEAD'
 alias grh1='git reset --hard HEAD~1'
 alias gdr='echo "dry run" | gpg --clearsign'
+alias av="aws-vault"
+
 
 # Paths
 cdpath+=($HOME)
@@ -95,12 +97,6 @@ if [[ -n $commands[kubecolor] ]]; then
   alias kubectl="kubecolor"
   compdef kubecolor=kubectl
 fi
-
-# aws-vault
-if [[ -n $commands[aws-vault] ]]; then
-  alias av="aws-vault"
-fi
-
 
 alias list-clusters='aws eks list-clusters'
 alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
