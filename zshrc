@@ -85,7 +85,7 @@ setopt SHARE_HISTORY
 # Kubernetes configurations
 if [[ -n $commands[kubectl] ]]; then
   alias kx='kubectx'
-  alias ke='kubens'
+  alias kn='kubens'
 #   compdef ke=kubens
 fi
 
@@ -98,36 +98,23 @@ fi
 alias list-clusters='aws eks list-clusters'
 alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
 
-function select-cluster {
+function kc {
     clusters=($(aws eks list-clusters --output text --query 'clusters[*]'))
-    PS3="Select a cluster: "
-    select cluster in "${clusters[@]}"; do
-        if [ -n "$cluster" ]; then
-            echo "Selected cluster: $cluster"
-            export SELECTED_CLUSTER=$cluster
-            aws eks --region us-east-2 update-kubeconfig --name "$cluster"
-            break
-        else
-            echo "Invalid selection. Please try again."
-        fi
-    done
-}
+    if [[ -z "${clusters[*]}" ]]; then
+        echo >&2 "error: could not list clusters (is the AWS CLI configured and the EKS service accessible?)"
+        exit 1
+    fi
 
-function select-env {
-    # Get the list of namespaces using kubens
-    namespaces=($(kubens | tail -n +2))
-    
-    PS3="Select a namespace: "
-    select namespace in "${namespaces[@]}"; do
-        if [ -n "$namespace" ]; then
-            echo "Selected namespace: $namespace"
-            export SELECTED_NAMESPACE=$namespace
-            kubens "$namespace"
-            break
-        else
-            echo "Invalid selection. Please try again."
-        fi
-    done
+    local choice
+    choice=$(printf '%s\n' "${clusters[@]}" | fzf --ansi --no-preview || true)
+    if [[ -z "${choice}" ]]; then
+        echo >&2 "error: you did not choose any of the options"
+        exit 1
+    else
+        echo "Selected cluster: $choice"
+        export SELECTED_CLUSTER=$choice
+        aws eks --region us-east-2 update-kubeconfig --name "$choice"
+    fi
 }
 
 # Local device specifics

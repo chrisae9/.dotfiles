@@ -25,6 +25,25 @@ _aws-vault() {
     fi
 }
 
+function avp {
+    profiles=($(aws-vault list | awk 'NR>2 {print $1}'))
+    if [[ -z "${profiles[*]}" ]]; then
+        echo >&2 "error: could not list profiles (is aws-vault installed and configured?)"
+        exit 1
+    fi
+
+    local choice
+    choice=$(printf '%s\n' "${profiles[@]}" | fzf --ansi --no-preview || true)
+    if [[ -z "${choice}" ]]; then
+        echo >&2 "error: you did not choose any of the options"
+        exit 1
+    else
+        echo "Selected profile: $choice"
+        export SELECTED_PROFILE=$choice
+        aws-vault exec $choice
+    fi
+}
+
 if [[ "$(basename -- ${(%):-%x})" != "_aws-vault" ]]; then
     compdef _aws-vault aws-vault
 fi
