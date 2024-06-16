@@ -9,7 +9,7 @@ function extra {
 }
 
 function get_cluster_short() {
-  echo "$1" | cut -d . -f1
+    echo "$1" | cut -d ':' -f6 | cut -d '/' -f2
 }
 
 KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
