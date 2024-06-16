@@ -18,8 +18,6 @@ ZSH_THEME="simple"
 plugins=(git brew direnv kube-ps1 kubectl kubectx zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
-bindkey -e
-
 # Custom Aliases
 alias chis='ssh chis'
 alias appleclean='find . -iname "._*" -delete'
