@@ -1,6 +1,6 @@
 if [[ -n $commands[aws-vault] ]]; then
     alias av="aws-vault"
-    compdef av=aws-vault
+    # compdef av=aws-vault
 else
     return 1
 fi
