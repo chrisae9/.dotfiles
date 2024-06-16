@@ -85,8 +85,7 @@ setopt SHARE_HISTORY
 # Kubernetes configurations
 if [[ -n $commands[kubectl] ]]; then
   alias kx='kubectx'
-  alias kn='kubens'
-#   compdef ke=kubens
+  alias ke='kubens'
 fi
 
 # Alias kubectl to kubecolor only if kubecolor is installed
@@ -102,18 +101,19 @@ function kc {
     clusters=($(aws eks list-clusters --output text --query 'clusters[*]'))
     if [[ -z "${clusters[*]}" ]]; then
         echo >&2 "error: could not list clusters (is the AWS CLI configured and the EKS service accessible?)"
-        exit 1
+        return 1
     fi
 
     local choice
     choice=$(printf '%s\n' "${clusters[@]}" | fzf --ansi --no-preview || true)
     if [[ -z "${choice}" ]]; then
         echo >&2 "error: you did not choose any of the options"
-        exit 1
+        return 1
     else
         echo "Selected cluster: $choice"
         export SELECTED_CLUSTER=$choice
         aws eks --region us-east-2 update-kubeconfig --name "$choice"
+        return 0
     fi
 }
 
