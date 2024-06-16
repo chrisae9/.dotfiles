@@ -83,11 +83,6 @@ setopt HIST_SAVE_NO_DUPS       # Do not write duplicate events to history file
 setopt INC_APPEND_HISTORY      # Append history incrementally
 setopt SHARE_HISTORY
 
-# # direnv hook
-# if type direnv &>/dev/null; then
-#   eval "$(direnv hook zsh)"
-# fi
-
 # Kubernetes configurations
 if command -v kubectl >/dev/null 2>&1; then
   source <(kubectl completion zsh)
