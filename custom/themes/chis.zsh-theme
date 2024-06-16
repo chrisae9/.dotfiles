@@ -1,10 +1,9 @@
-PROMPT='%{$fg[magenta]%}%~%{$reset_color%} 
-$'
+PROMPT='%{$fg[magenta]%}%~%{$reset_color%} $(extra)$ '
 RPROMPT='$(git_prompt_info)'
 
-function prompt_char {
-     echo "$%{$reset_color%}" && return
-    echo "≥%{$reset_color%}"
+function extra {
+PROMPT+='$AWS_VAULT
+'
 }
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg_bold[blue]%}("
