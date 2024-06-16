@@ -1,9 +1,10 @@
 if [[ -n $commands[aws-vault] ]]; then
     alias av="aws-vault"
-    # compdef av=aws-vault
 else
     return 1
 fi
+
+# https://github.com/99designs/aws-vault/blob/master/contrib/completions/zsh/aws-vault.zsh
 
 _aws-vault() {
     local i
