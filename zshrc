@@ -15,7 +15,7 @@ export SAVEHIST=10000  # Number of history entries to save
 # Source Oh My Zsh
 ZSH_CUSTOM=~/.dotfiles/custom
 ZSH_THEME="simple"
-plugins=(git brew)
+plugins=(git brew direnv)
 source $ZSH/oh-my-zsh.sh
 
 
@@ -83,17 +83,10 @@ setopt HIST_SAVE_NO_DUPS       # Do not write duplicate events to history file
 setopt INC_APPEND_HISTORY      # Append history incrementally
 setopt SHARE_HISTORY
 
-# # HOMEBREW completions
-# if type brew &>/dev/null; then
-#   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-#   autoload -Uz compinit
-#   compinit
+# # direnv hook
+# if type direnv &>/dev/null; then
+#   eval "$(direnv hook zsh)"
 # fi
-
-# direnv hook
-if type direnv &>/dev/null; then
-  eval "$(direnv hook zsh)"
-fi
 
 # Kubernetes configurations
 if command -v kubectl >/dev/null 2>&1; then
