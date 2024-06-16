@@ -69,6 +69,7 @@ alias gdr='echo "dry run" | gpg --clearsign'
 if [[ -n $commands[aws-vault] ]]; then
     eval "$(aws-vault --completion-script-zsh)"
     alias av="aws-vault"
+    compdef av=aws-vault
 fi
 
 # Paths
