@@ -55,6 +55,7 @@ setopt SHARE_HISTORY
 if [[ -n $commands[kubectl] ]]; then
   alias kx='kubectx'
   alias ke='kubens'
+  compdef ke=kubens
 fi
 
 # Alias kubectl to kubecolor only if kubecolor is installed
