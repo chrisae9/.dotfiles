@@ -21,8 +21,8 @@ export SAVEHIST=10000  # Number of history entries to save
 
 # Source Oh My Zsh
 ZSH_CUSTOM=~/.dotfiles/custom
-ZSH_THEME="powerlevel10k/powerlevel10k"
-# ZSH_THEME="chis"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="chis"
 plugins=(git brew direnv kube-ps1 kubectl kubectx zsh-autosuggestions emoji sudo aws-vault nvm npm fluxcd fzf)
 source $ZSH/oh-my-zsh.sh
 
@@ -144,6 +144,6 @@ if [[ $- == *i* ]]; then
     fi
 fi
 
-POWERLEVEL9K_CONFIG_FILE=~/.dotfiles/p10k.zsh
+# POWERLEVEL9K_CONFIG_FILE=~/.dotfiles/p10k.zsh
 # # To customize prompt, run `p10k configure` or edit ~/.dotfiles/p10k.zsh.
-[[ ! -f ~/.dotfiles/p10k.zsh ]] || source ~/.dotfiles/p10k.zsh
+# [[ ! -f ~/.dotfiles/p10k.zsh ]] || source ~/.dotfiles/p10k.zsh
