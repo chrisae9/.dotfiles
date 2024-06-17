@@ -23,7 +23,7 @@ export SAVEHIST=10000  # Number of history entries to save
 ZSH_CUSTOM=~/.dotfiles/custom
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_THEME="chis"
-plugins=(git brew direnv kube-ps1 kubectl kubectx zsh-autosuggestions emoji sudo aws-vault nvm npm fluxcd fzf)
+plugins=(git brew direnv kube-ps1 kubectl kubectx zsh-autosuggestions emoji sudo aws-vault nvm npm fluxcd fzf stern)
 source $ZSH/oh-my-zsh.sh
 
 # Custom Aliases
