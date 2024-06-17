@@ -108,7 +108,7 @@ alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
 function kc {
     clusters=($(aws eks list-clusters --output text --query 'clusters[*]'))
     if [[ -z "${clusters[*]}" ]]; then
-        echo >&2 "error: could not list clusters (is the AWS CLI configured and the EKS service accessible?)"
+        echo >&2 "error: could not list clusters (is the AWS CLI configured and the EKS service accessible? (VPN???))"
         return 1
     fi
 
