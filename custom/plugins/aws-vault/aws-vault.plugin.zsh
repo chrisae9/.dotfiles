@@ -4,6 +4,8 @@ else
     return 1
 fi
 
+alias ac='vim ~/.aws/config'
+
 # https://github.com/99designs/aws-vault/blob/master/contrib/completions/zsh/aws-vault.zsh
 
 _aws-vault() {
