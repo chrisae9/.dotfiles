@@ -32,6 +32,7 @@ plugins=(
     fluxcd 
     fzf 
     stern
+    terraform
     )
 source $ZSH/oh-my-zsh.sh
 
