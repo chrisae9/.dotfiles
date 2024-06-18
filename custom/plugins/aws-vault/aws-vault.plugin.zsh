@@ -5,6 +5,7 @@ else
 fi
 
 alias ac='vim ~/.aws/config'
+alias avu='unset AWS_VAULT'
 
 # https://github.com/99designs/aws-vault/blob/master/contrib/completions/zsh/aws-vault.zsh
 
