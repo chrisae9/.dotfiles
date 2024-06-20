@@ -26,6 +26,16 @@ commit_changes() {
     fi
 }
 
+commit_submodule_changes() {
+    msg "Commit submodule changes..."
+    git add -A
+    if ! git diff --cached --quiet; then
+        git commit -m "Update submodules to the latest commit"
+    else
+        msg "No submodule changes to commit."
+    fi
+}
+
 BASEDIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
 cd "${BASEDIR}"
 
@@ -57,8 +67,7 @@ msg 'Update submodules...'
 git submodule init
 git submodule update --remote
 
-msg 'Commit submodule changes...'
-commit_changes
+commit_submodule_changes
 
 msg 'Push local changes...'
 git push
