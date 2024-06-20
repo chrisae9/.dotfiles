@@ -33,6 +33,7 @@ plugins=(
     fzf 
     stern
     terraform
+    gh
     )
 source $ZSH/oh-my-zsh.sh
 
