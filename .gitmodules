@@ -11,7 +11,3 @@
 	path = custom/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
 	branch = master 
-[submodule "powerlevel10k"]
-	path = custom/themes/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k
-	branch = master 

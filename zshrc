@@ -14,7 +14,6 @@ export SAVEHIST=10000  # Number of history entries to save
 
 # Source Oh My Zsh
 ZSH_CUSTOM=~/.dotfiles/custom
-# ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_THEME="chis"
 plugins=(
     git 
@@ -57,7 +56,6 @@ setopt SHARE_HISTORY
 if [[ -n $commands[kubectl] ]]; then
   alias kx='kubectx'
   alias ke='kubens'
-#   compdef ke=kubens
 fi
 
 # Alias kubectl to kubecolor only if kubecolor is installed
@@ -107,5 +105,3 @@ if [[ $- == *i* ]]; then
         msg "No/slow internet. Update script will not run."
     fi
 fi
-
-# POWERLEVEL9K_CONFIG_FILE=~/.dotfiles/p10k.zsh
