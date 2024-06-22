@@ -6,19 +6,21 @@
 
 - link:
     ~/.zshrc:
-        force: true
+      force: true
     ~/.vimrc:
     ~/.gitconfig:
-        force: true
+      force: true
     ~/.ssh/config:
-        force: true
-        create: true
-        path: config
+      force: true
+      create: true
     ~/.gnupg/gpg-agent.conf:
-        force: true
-        create: true
-
-
+      force: true
+      create: true
+    ~/Library/Application Support/k9s/plugins.yaml:
+      if: '[ `uname` = Darwin ]'
+      force: true
+      create: true
+      path: custom/plugins/k9s/plugins.yaml
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
