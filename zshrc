@@ -34,6 +34,8 @@ plugins=(
     terraform
     gh
     k9s
+    gpg-agent
+    zsh-interactive-cd
     )
 source $ZSH/oh-my-zsh.sh
 
