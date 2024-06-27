@@ -92,7 +92,7 @@ function kc {
 
 function kc_describe_last() {
   # Get the last kc command from history
-  last_kc_command=$(history | grep "kc " | tail -n 1 | sed 's/^ *[0-9]* *//')
+  last_kc_command=$(history | grep "k get" | tail -n 1 | sed 's/^ *[0-9]* *//')
 
   # Replace 'get' with 'describe' in the last kc command
   new_kc_command=$(sed 's/get/describe/' <<< "$last_kc_command")
