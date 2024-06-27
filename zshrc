@@ -90,6 +90,21 @@ function kc {
     fi
 }
 
+function kc_describe_last() {
+  # Get the last kc command from history
+  last_kc_command=$(history | grep "kc " | tail -n 1 | sed 's/^ *[0-9]* *//')
+
+  # Replace 'get' with 'describe' in the last kc command
+  new_kc_command=$(sed 's/get/describe/' <<< "$last_kc_command")
+
+  # Print the new command to be picked up by zsh's command line
+  print -z $new_kc_command
+}
+
+# Create alias 'kd' for the function
+alias kd='kc_describe_last'
+
+
 # Local device specifics
 if [[ -f "$HOME/.zshrc.local" ]]; then
     source "$HOME/.zshrc.local"
