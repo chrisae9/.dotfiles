@@ -105,6 +105,9 @@ function kc_describe_last() {
 alias kd='kc_describe_last'
 
 
+alias start-code='sudo systemctl start code-tunnel.service'
+alias stop-code='sudo systemctl stop code-tunnel.service'
+
 # Local device specifics
 if [[ -f "$HOME/.zshrc.local" ]]; then
     source "$HOME/.zshrc.local"
