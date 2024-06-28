@@ -107,6 +107,7 @@ alias kd='kc_describe_last'
 
 alias start-code='sudo systemctl start code-tunnel.service'
 alias stop-code='sudo systemctl stop code-tunnel.service'
+alias status-code='sudo systemctl status code-tunnel.service'
 
 # Local device specifics
 if [[ -f "$HOME/.zshrc.local" ]]; then
