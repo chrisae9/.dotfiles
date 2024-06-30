@@ -37,6 +37,11 @@ plugins=(
     gpg-agent
     zsh-interactive-cd
     )
+
+if uname -a | grep -Eiq 'linux|valve'; then
+    plugins=(${plugins[@]/fzf})  # Remove fzf if "linux" or "valve" is found
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 # Paths
