@@ -38,11 +38,11 @@ plugins=(
     zsh-interactive-cd
     )
 
+# Check if running on Steam Deck
 if uname -a | grep -Eiq 'linux|valve'; then
-    plugins=(${plugins[@]/fzf})  # Remove fzf if "linux" or "valve" is found
+    plugins=(${plugins[@]/fzf})
+    plugins=(${plugins[@]/zsh-interactive-cd}) 
 fi
-
-echo "Plugins to be loaded: ${plugins[@]}"
 
 source $ZSH/oh-my-zsh.sh
 
