@@ -17,3 +17,6 @@ Host chis
 Host deck
     user deck
     hostname chisdeck
+Host adeck
+    user deck
+    hostname aprildeck
