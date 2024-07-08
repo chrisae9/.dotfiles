@@ -39,9 +39,9 @@ plugins=(
     )
 
 # Check if running on Steam Deck
-if uname -a | grep -Eiq 'linux|valve'; then
+if uname -a | grep -Eiq '(?=.*linux)(?=.*valve)'; then
     plugins=(${plugins[@]/fzf})
-    plugins=(${plugins[@]/zsh-interactive-cd}) 
+    plugins=(${plugins[@]/zsh-interactive-cd})
 fi
 
 source $ZSH/oh-my-zsh.sh
