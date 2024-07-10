@@ -111,6 +111,11 @@ function kc_describe_last() {
 # Create alias 'kd' for the function
 alias kd='kc_describe_last'
 
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
 
 alias start-code='sudo systemctl start code-tunnel.service'
 alias stop-code='sudo systemctl stop code-tunnel.service'
