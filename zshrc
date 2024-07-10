@@ -12,6 +12,8 @@ export KUBECONFIG=~/.kube/config
 export HISTSIZE=10000  # Maximum number of history entries
 export SAVEHIST=10000  # Number of history entries to save
 
+zstyle ':omz:update' mode disabled
+
 # Source Oh My Zsh
 ZSH_CUSTOM=~/.dotfiles/custom
 ZSH_THEME="chis"
