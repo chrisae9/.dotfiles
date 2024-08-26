@@ -141,3 +141,4 @@ if [[ $- == *i* ]]; then
         msg "No/slow internet. Update script will not run."
     fi
 fi
+
