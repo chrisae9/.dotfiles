@@ -80,24 +80,54 @@ alias list-clusters='aws eks list-clusters'
 alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
 
 function kc {
-    clusters=($(aws eks list-clusters --output text --query 'clusters[*]'))
-    if [[ -z "${clusters[*]}" ]]; then
-        echo >&2 "error: could not list clusters (is the AWS CLI configured and the EKS service accessible? (VPN???))"
+    # Define a list of regions (you can also fetch this dynamically if preferred)
+    regions=(
+        #us-east-1
+        us-east-2
+        #us-west-1
+        #us-west-2
+        eu-central-1
+        #eu-west-1
+        #eu-west-2
+        #eu-west-3
+    )
+
+    # Prompt user to select a region using fzf
+    local selected_region
+    selected_region=$(printf '%s\n' "${regions[@]}" | fzf --prompt="Select AWS Region: " --height 40% --border --ansi)
+    
+    if [[ -z "$selected_region" ]]; then
+        echo >&2 "error: no region selected"
         return 1
     fi
 
+    echo "Selected region: $selected_region"
+
+    # List clusters in the selected region
+    local clusters
+    clusters=($(aws eks list-clusters --region "$selected_region" --output text --query 'clusters[*]'))
+    
+    if [[ -z "${clusters[*]}" ]]; then
+        echo >&2 "error: could not list clusters in region '$selected_region' (is the AWS CLI configured and the EKS service accessible? (VPN???))"
+        return 1
+    fi
+
+    # Prompt user to select a cluster using fzf
     local choice
-    choice=$(printf '%s\n' "${clusters[@]}" | fzf --ansi --no-preview || true)
-    if [[ -z "${choice}" ]]; then
+    choice=$(printf '%s\n' "${clusters[@]}" | fzf --prompt="Select EKS Cluster: " --height 40% --border --ansi --no-preview || true)
+    
+    if [[ -z "$choice" ]]; then
         echo >&2 "error: you did not choose any of the options"
         return 1
     else
-        echo "Selected cluster: $choice"
-        export SELECTED_CLUSTER=$choice
-        aws eks --region us-east-2 update-kubeconfig --name "$choice"
+        echo "Selected cluster: $choice in region: $selected_region"
+        export SELECTED_CLUSTER="$choice"
+        export SELECTED_REGION="$selected_region"
+        aws eks --region "$selected_region" update-kubeconfig --name "$choice"
         return 0
     fi
 }
+
 
 function kc_describe_last() {
   # Get the last kc command from history
