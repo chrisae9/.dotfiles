@@ -8,3 +8,4 @@ fi
 alias ghe="ghce"
 alias ghs="ghcs"
 alias ghc="gh copilot config"
+alias ghci="gh extension install github/gh-copilot"
