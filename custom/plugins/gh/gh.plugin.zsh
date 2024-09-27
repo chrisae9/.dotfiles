@@ -1,9 +1,11 @@
 if [[ -n $commands[gh] ]]; then
     source <(gh completion -s zsh)
-    eval "$(gh copilot alias -- zsh)"
 else
     return 1
 fi
+
+eval "$(gh copilot alias -- zsh)"
+
 
 alias ghe="ghce"
 alias ghs="ghcs"
