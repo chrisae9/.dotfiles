@@ -21,6 +21,10 @@
       force: true
       create: true
       path: custom/plugins/k9s/plugins.yaml
+      ~/.config/github-copilot/ghc-config.yml:
+        path: ghc-config.yml
+        force: true
+        create: true
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
