@@ -4,7 +4,9 @@ else
     return 1
 fi
 
-eval "$(gh copilot alias -- zsh)"
+if gh extension list | grep -q 'gh-copilot'; then
+    eval "$(gh copilot alias -- zsh)"
+fi
 
 
 alias ghe="ghce"
