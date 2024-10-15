@@ -79,8 +79,39 @@ fi
 alias list-clusters='aws eks list-clusters'
 alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
 
+# Function to fetch and display active colors from cluster URLs
+function cluster-color {
+    # Fetch and display the active colors from the cluster URLs
+    echo "Fetching active colors from clusters:"
+    for url in \
+        "https://cluster.nonprod.cloudy.sonatype.dev/" \
+        "https://cluster.cloudy.sonatype.dev/" \
+        "https://cluster.dev.cloudy.sonatype.dev/"; do
+
+        response=$(curl -s -m 5 "$url")
+        if [[ $? -ne 0 ]]; then
+            colour="unknown"
+        else
+            # Check if the response is valid JSON
+            if echo "$response" | jq empty > /dev/null 2>&1; then
+                colour=$(echo "$response" | jq -r '.colour')
+                if [[ -z "$colour" || "$colour" == "null" ]]; then
+                    colour="unknown"
+                fi
+            else
+                colour="unknown"
+            fi
+        fi
+        echo "$url: $colour"
+    done
+}
+
+# Function to select AWS region and EKS cluster
 function kc {
-    # Define a list of regions (you can also fetch this dynamically if preferred)
+    # Call cluster-color to fetch and display colors
+    cluster-color
+
+    # Define a list of regions
     regions=(
         #us-east-1
         us-east-2
@@ -95,7 +126,7 @@ function kc {
     # Prompt user to select a region using fzf
     local selected_region
     selected_region=$(printf '%s\n' "${regions[@]}" | fzf --prompt="Select AWS Region: " --height 40% --border --ansi)
-    
+
     if [[ -z "$selected_region" ]]; then
         echo >&2 "error: no region selected"
         return 1
@@ -106,7 +137,7 @@ function kc {
     # List clusters in the selected region
     local clusters
     clusters=($(aws eks list-clusters --region "$selected_region" --output text --query 'clusters[*]'))
-    
+
     if [[ -z "${clusters[*]}" ]]; then
         echo >&2 "error: could not list clusters in region '$selected_region' (is the AWS CLI configured and the EKS service accessible? (VPN???))"
         return 1
@@ -115,7 +146,7 @@ function kc {
     # Prompt user to select a cluster using fzf
     local choice
     choice=$(printf '%s\n' "${clusters[@]}" | fzf --prompt="Select EKS Cluster: " --height 40% --border --ansi --no-preview || true)
-    
+
     if [[ -z "$choice" ]]; then
         echo >&2 "error: you did not choose any of the options"
         return 1
@@ -127,7 +158,6 @@ function kc {
         return 0
     fi
 }
-
 
 function kc_describe_last() {
   # Get the last kc command from history
