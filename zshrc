@@ -81,37 +81,22 @@ alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
 
 # Function to fetch and display active colors from cluster URLs
 function cluster-color {
-    # Fetch and display the active colors from the cluster URLs
     echo "Fetching active colors from clusters:"
     for url in \
         "https://cluster.nonprod.cloudy.sonatype.dev/" \
         "https://cluster.cloudy.sonatype.dev/" \
         "https://cluster.dev.cloudy.sonatype.dev/"; do
 
-        response=$(curl -s -m 5 "$url")
-        if [[ $? -ne 0 ]]; then
-            colour="unknown"
-        else
-            # Check if the response is valid JSON
-            if echo "$response" | jq empty > /dev/null 2>&1; then
-                colour=$(echo "$response" | jq -r '.colour')
-                if [[ -z "$colour" || "$colour" == "null" ]]; then
-                    colour="unknown"
-                fi
-            else
-                colour="unknown"
-            fi
-        fi
+        colour=$(curl -s -m 5 "$url" | jq -r '.colour // "unknown"' 2>/dev/null || echo "unknown")
         echo "$url: $colour"
     done
 }
 
-# Function to select AWS region and EKS cluster
 function kc {
-    # Call cluster-color to fetch and display colors
+    # Fetch and display colors
     cluster-color
 
-    # Define a list of regions
+    # Define the list of regions
     regions=(
         #us-east-1
         us-east-2
@@ -122,40 +107,22 @@ function kc {
         #eu-west-2
     )
 
-    # Prompt user to select a region using fzf
-    local selected_region
+    # Select AWS Region
     selected_region=$(printf '%s\n' "${regions[@]}" | fzf --prompt="Select AWS Region: " --height 40% --border --ansi)
-
-    if [[ -z "$selected_region" ]]; then
-        echo >&2 "error: no region selected"
-        return 1
-    fi
-
+    [[ -z "$selected_region" ]] && { echo >&2 "Error: No region selected"; return 1; }
     echo "Selected region: $selected_region"
 
-    # List clusters in the selected region
-    local clusters
-    clusters=($(aws eks list-clusters --region "$selected_region" --output text --query 'clusters[*]'))
+    # List clusters and select one
+    clusters=$(aws eks list-clusters --region "$selected_region" --output json | jq -r '.clusters[]')
+    [[ -z "$clusters" ]] && { echo >&2 "Error: No clusters found in region '$selected_region'"; return 1; }
 
-    if [[ -z "${clusters[*]}" ]]; then
-        echo >&2 "error: could not list clusters in region '$selected_region' (is the AWS CLI configured and the EKS service accessible? (VPN???))"
-        return 1
-    fi
+    choice=$(echo "$clusters" | fzf --prompt="Select EKS Cluster: " --height 40% --border --ansi --no-preview)
+    [[ -z "$choice" ]] && { echo >&2 "Error: No cluster selected"; return 1; }
+    echo "Selected cluster: $choice in region: $selected_region"
 
-    # Prompt user to select a cluster using fzf
-    local choice
-    choice=$(printf '%s\n' "${clusters[@]}" | fzf --prompt="Select EKS Cluster: " --height 40% --border --ansi --no-preview || true)
-
-    if [[ -z "$choice" ]]; then
-        echo >&2 "error: you did not choose any of the options"
-        return 1
-    else
-        echo "Selected cluster: $choice in region: $selected_region"
-        export SELECTED_CLUSTER="$choice"
-        export SELECTED_REGION="$selected_region"
-        aws eks --region "$selected_region" update-kubeconfig --name "$choice"
-        return 0
-    fi
+    export SELECTED_CLUSTER="$choice"
+    export SELECTED_REGION="$selected_region"
+    aws eks --region "$selected_region" update-kubeconfig --name "$choice"
 }
 
 function kc_describe_last() {
