@@ -103,7 +103,7 @@ function kc {
         #us-west-1
         us-west-2
         eu-central-1
-        #eu-west-1
+        eu-west-1
         #eu-west-2
     )
 
