@@ -1,5 +1,6 @@
 # Custom Aliases
 alias chis='ssh chis'
+alias wakey="wakeonlan 74:56:3c:b6:b4:0b"
 alias appleclean='find . -iname "._*" -delete'
 alias ll='ls -alFh'
 alias la='ls -A'
