@@ -38,6 +38,7 @@ plugins=(
     k9s
     gpg-agent
     zsh-interactive-cd
+    ollama
     )
 
 # Check if running on Steam Deck
