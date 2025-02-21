@@ -1,0 +1,9 @@
+
+# 2025-02-20 19:10:42.962873
++n
+
+# 2025-02-20 19:11:21.175358
++modify the alias for c so that if I pass a file it will open that file in the current editor, currently it is set to open the workspace in a new window
+
+# 2025-02-20 19:12:35.586252
++/exit
