@@ -55,6 +55,14 @@ path+=($HOME/bin)
 path+=($HOME/.local/bin)
 path+=($HOME/go/bin)
 
+function c {
+    if [[ $# -eq 0 ]]; then
+        code -r .
+    else
+        code "$@"
+    fi
+}
+
 # History Configuration
 setopt HIST_EXPIRE_DUPS_FIRST  # Expire duplicate events first when trimming history
 setopt HIST_FIND_NO_DUPS       # Do not display previously found event
