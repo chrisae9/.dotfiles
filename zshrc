@@ -57,7 +57,7 @@ path+=($HOME/go/bin)
 
 function c {
     if [[ $# -eq 0 ]]; then
-        code -reuse-window .
+        code --reuse-window .
     else
         code "$@"
     fi
