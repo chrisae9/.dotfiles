@@ -63,6 +63,14 @@ function c {
     fi
 }
 
+# aider.chat
+alias a="aider"
+aider-exclude() {
+  [[ -d .git ]] || { echo "Not in a Git repo."; return 1; }
+  grep -q '^\.aider\*' .git/info/exclude 2>/dev/null || echo ".aider*" >> .git/info/exclude
+  echo ".aider* ensured in .git/info/exclude"
+}
+
 # History Configuration
 setopt HIST_EXPIRE_DUPS_FIRST  # Expire duplicate events first when trimming history
 setopt HIST_FIND_NO_DUPS       # Do not display previously found event
