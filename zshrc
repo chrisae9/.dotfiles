@@ -71,6 +71,23 @@ aider-exclude() {
   echo ".aider* ensured in .git/info/exclude"
 }
 
+function ad() {
+  # Define list of models
+  models=(
+    "ollama_chat/Mistral-small:latest"
+    "ollama_chat/qwen2.5-coder:32b"
+    "openrouter/deepseek/deepseek-r1:free"
+    "openrouter/anthropic/claude-3.7-sonnet"
+  )
+  
+  # Select model
+  model=$(printf '%s\n' "${models[@]}" | fzf --height 30% --border --prompt="AI Model: ")
+  [[ -z "$model" ]] && return 1
+  
+  # Run aider with selected model
+  AIDER_MODEL=$model aider "$@"
+}
+
 # History Configuration
 setopt HIST_EXPIRE_DUPS_FIRST  # Expire duplicate events first when trimming history
 setopt HIST_FIND_NO_DUPS       # Do not display previously found event
