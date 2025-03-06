@@ -76,6 +76,7 @@ function ad() {
   models=(
     "ollama_chat/Mistral-small:latest"
     "ollama_chat/qwen2.5-coder:32b"
+    "ollama_chat/qwq:latest"
     "openrouter/deepseek/deepseek-r1:free"
     "openrouter/anthropic/claude-3.7-sonnet"
   )
