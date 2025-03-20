@@ -63,6 +63,14 @@ function c {
     fi
 }
 
+function ci {
+    if [[ $# -eq 0 ]]; then
+        code-insiders --reuse-window .
+    else
+        code-insiders "$@"
+    fi
+}
+
 # aider.chat
 alias a="aider"
 aider-exclude() {
