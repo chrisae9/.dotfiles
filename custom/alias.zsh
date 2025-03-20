@@ -24,13 +24,27 @@ alias ezl='vim ~/.zshrc.local'
 alias sz='source ~/.zshrc'
 alias hz='vim ~/.histfile'
 alias sc='vim ~/.ssh/config'
+
+# docker
 alias dcd='docker compose down'
 alias dck='docker compose kill'
 alias dcu='docker compose up -d'
+alias dcub='docker compose up --build -d'
 alias dcdu='docker compose down && docker compose up -d'
 alias dcul='docker-compose up -d && docker-compose logs -f'
 alias dcl='docker-compose logs -f'
 alias dcdul='docker compose down && docker-compose up -d && docker-compose logs -f'
+
+# profile support
+alias dcup='docker compose --profile $1 up -d'
+alias dcupb='docker compose --profile $1 up --build -d'
+alias dckp='docker compose --profile $1 kill'
+alias dcupl='docker compose --profile $1 up -d && docker compose logs -f'
+alias dcdp='docker compose --profile $1 down'
+alias dcpl='docker compose --profile $1 logs -f'
+alias dcdup='docker compose --profile $1 down && docker compose --profile $1 up -d'
+alias dcdupl='docker compose --profile $1 down && docker compose --profile $1 up -d && docker compose logs -f'
+
 alias gf='git fetch'
 alias gps='git push'
 alias gpl='git pull'
