@@ -55,7 +55,7 @@ path+=($HOME/bin)
 path+=($HOME/.local/bin)
 path+=($HOME/go/bin)
 
-function c {
+c() {
     if [[ $# -eq 0 ]]; then
         code --reuse-window .
     else
@@ -63,7 +63,7 @@ function c {
     fi
 }
 
-function ci {
+ci() {
     if [[ $# -eq 0 ]]; then
         code-insiders --reuse-window .
     else
@@ -79,7 +79,7 @@ aider-exclude() {
   echo ".aider* ensured in .git/info/exclude"
 }
 
-function ad() {
+ad() {
   # Define list of models
   models=(
     "ollama_chat/Mistral-small:latest"
@@ -124,7 +124,7 @@ alias list-clusters='aws eks list-clusters'
 alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
 
 # Function to fetch and display active colors from cluster URLs
-function cluster-color {
+cluster-color() {
     echo "Fetching active colors from clusters:"
     for url in \
         "https://cluster.nonprod.cloudy.sonatype.dev/" \
@@ -136,7 +136,7 @@ function cluster-color {
     done
 }
 
-function kc {
+kc() {
     # Fetch and display colors
     cluster-color
 
@@ -169,7 +169,7 @@ function kc {
     aws eks --region "$selected_region" update-kubeconfig --name "$choice"
 }
 
-function kc_describe_last() {
+kc_describe_last() {
   # Get the last kc command from history
   last_kc_command=$(history | grep "k get" | tail -n 1 | sed 's/^ *[0-9]* *//')
 

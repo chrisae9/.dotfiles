@@ -35,15 +35,14 @@ alias dcul='docker-compose up -d && docker-compose logs -f'
 alias dcl='docker-compose logs -f'
 alias dcdul='docker compose down && docker-compose up -d && docker-compose logs -f'
 
-# profile support
-alias dcup='docker compose --profile $1 up -d'
-alias dcupb='docker compose --profile $1 up --build -d'
-alias dckp='docker compose --profile $1 kill'
-alias dcupl='docker compose --profile $1 up -d && docker compose logs -f'
-alias dcdp='docker compose --profile $1 down'
-alias dcpl='docker compose --profile $1 logs -f'
-alias dcdup='docker compose --profile $1 down && docker compose --profile $1 up -d'
-alias dcdupl='docker compose --profile $1 down && docker compose --profile $1 up -d && docker compose logs -f'
+dcup() { docker compose --profile "$@" up -d; }
+dcupb() { docker compose --profile "$@" up --build -d; }
+dckp() { docker compose --profile "$@" kill; }
+dcupl() { docker compose --profile "$@" up -d && docker compose logs -f; }
+dcdp() { docker compose --profile "$@" down; }
+dcpl() { docker compose --profile "$@" logs -f; }
+dcdup() { docker compose --profile "$@" down && docker compose --profile "$@" up -d; }
+dcdupl() { docker compose --profile "$@" down && docker compose --profile "$@" up -d && docker compose logs -f; }
 
 alias gf='git fetch'
 alias gps='git push'
