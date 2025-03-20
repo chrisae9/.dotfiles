@@ -38,11 +38,11 @@ alias dcdul='docker compose down && docker-compose up -d && docker-compose logs 
 dcup() { docker compose --profile "$@" up -d; }
 dcupb() { docker compose --profile "$@" up --build -d; }
 dckp() { docker compose --profile "$@" kill; }
-dcupl() { docker compose --profile "$@" up -d && docker compose logs -f; }
+dcupl() { docker compose --profile "$@" up -d && docker compose --profile "$@" logs -f; }
 dcdp() { docker compose --profile "$@" down; }
 dcpl() { docker compose --profile "$@" logs -f; }
 dcdup() { docker compose --profile "$@" down && docker compose --profile "$@" up -d; }
-dcdupl() { docker compose --profile "$@" down && docker compose --profile "$@" up -d && docker compose logs -f; }
+dcdupl() { docker compose --profile "$@" down && docker compose --profile "$@" up -d && docker compose --profile "$@" logs -f; }
 
 alias gf='git fetch'
 alias gps='git push'
