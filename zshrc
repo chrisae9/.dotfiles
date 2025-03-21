@@ -87,7 +87,9 @@ ad() {
     "ollama_chat/gemma3:27b"
     "ollama_chat/qwq:latest"
     "openrouter/deepseek/deepseek-r1:free"
-    "openrouter/anthropic/claude-3.7-sonnet"
+    "openrouter/anthropic/claude-3.7-sonnet",
+    "openrouter/google/gemini-2.0-flash-001",
+    "openrouter/google/gemini-2.0-flash-exp:free"
   )
   
   # Select model
