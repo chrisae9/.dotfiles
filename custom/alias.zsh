@@ -40,7 +40,7 @@ dcupb() { docker compose --profile "$@" up --build -d; }
 dckp() { docker compose --profile "$@" kill; }
 dcupl() { docker compose --profile "$@" up -d && docker compose --profile "$@" logs -f; }
 dcdp() { docker compose --profile "$@" down; }
-dcpl() { docker compose --profile "$@" logs -f; }
+dclp() { docker compose --profile "$@" logs -f; }
 dcdup() { docker compose --profile "$@" down && docker compose --profile "$@" up -d; }
 dcdupl() { docker compose --profile "$@" down && docker compose --profile "$@" up -d && docker compose --profile "$@" logs -f; }
 
