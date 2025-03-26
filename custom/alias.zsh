@@ -44,6 +44,13 @@ dclp() { docker compose --profile "$@" logs -f; }
 dcdup() { docker compose --profile "$@" down && docker compose --profile "$@" up -d; }
 dcdupl() { docker compose --profile "$@" down && docker compose --profile "$@" up -d && docker compose --profile "$@" logs -f; }
 
+ollama_update() {
+    ollama list | awk 'NR>1 {print $1}' | while read package; do
+        echo "Updating $package..."
+        ollama pull "$package"
+    done
+}
+
 alias gf='git fetch'
 alias gps='git push'
 alias gpl='git pull'
