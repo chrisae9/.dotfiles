@@ -30,10 +30,10 @@ alias dcd='docker compose down'
 alias dck='docker compose kill'
 alias dcu='docker compose up -d'
 alias dcub='docker compose up --build -d'
-alias dcdu='docker compose down && docker compose up -d'
-alias dcul='docker-compose up -d && docker-compose logs -f'
+dcdu() { docker compose down "$@" && docker compose up -d "$@"; }
+dcul() { docker compose up -d "$@" && docker compose logs -f "$@"; }
 alias dcl='docker-compose logs -f'
-alias dcdul='docker compose down && docker-compose up -d && docker-compose logs -f'
+dcdul () { docker compose down "$@" && docker compose up -d "$@" && docker compose logs -f "$@"; }
 
 dcup() { docker compose --profile "$@" up -d; }
 dcupb() { docker compose --profile "$@" up --build -d; }
