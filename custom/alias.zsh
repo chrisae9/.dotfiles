@@ -26,6 +26,7 @@ alias hz='vim ~/.histfile'
 alias sc='vim ~/.ssh/config'
 
 # docker
+de () { docker exec -it "$@" /bin/bash; }
 alias dcd='docker compose down'
 alias dck='docker compose kill'
 alias dcu='docker compose up -d'
