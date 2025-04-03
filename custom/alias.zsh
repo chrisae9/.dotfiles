@@ -27,9 +27,11 @@ alias sc='vim ~/.ssh/config'
 
 # docker
 de () { docker exec -it "$@" /bin/bash; }
+alias dtf="docker run --rm --user $(id -u):$(id -g) -v $(pwd):/workdir hashicorp/terraform:latest fmt -recursive /workdir"
 alias dcd='docker compose down'
 alias dck='docker compose kill'
 alias dcu='docker compose up -d'
+alias dcb='docker compose build'
 alias dcub='docker compose up --build -d'
 dcdu() { docker compose down "$@" && docker compose up -d "$@"; }
 dcul() { docker compose up -d "$@" && docker compose logs -f "$@"; }
