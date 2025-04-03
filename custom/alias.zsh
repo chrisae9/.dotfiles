@@ -25,6 +25,8 @@ alias sz='source ~/.zshrc'
 alias hz='vim ~/.histfile'
 alias sc='vim ~/.ssh/config'
 
+alias tf-clean="rm -rf .terraform && rm -f tfplan && rm -f .terraform.lock.hcl"
+
 # docker
 de () { docker exec -it "$@" /bin/bash; }
 alias dtf="docker run --rm --user $(id -u):$(id -g) -v $(pwd):/workdir hashicorp/terraform:latest fmt -recursive /workdir"
