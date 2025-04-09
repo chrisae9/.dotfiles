@@ -29,6 +29,8 @@ alias tf-clean="rm -rf .terraform && rm -f tfplan && rm -f .terraform.lock.hcl"
 
 # docker
 de () { docker exec -it "$@" /bin/bash; }
+dee () { docker exec -it "$@" /bin/sh; }
+
 alias dtf="docker run --rm --user $(id -u):$(id -g) -v $(pwd):/workdir hashicorp/terraform:latest fmt -recursive /workdir"
 alias dcd='docker compose down'
 alias dck='docker compose kill'
