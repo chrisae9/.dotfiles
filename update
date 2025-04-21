@@ -56,7 +56,7 @@ elif ! git diff --cached --quiet; then
 elif ! git diff --quiet HEAD origin/main; then
     msg 'Local .dotfiles do not match latest commit.'
 else
-    msg ".dotfiles are up to date"
+    # msg ".dotfiles are up to date"
     exit 0
 fi
 
