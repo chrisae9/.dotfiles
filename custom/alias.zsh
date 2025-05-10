@@ -25,7 +25,7 @@ alias sz='source ~/.zshrc'
 alias hz='vim ~/.histfile'
 alias sc='vim ~/.ssh/config'
 
-alias tf-clean="rm -rf .terraform && rm -f tfplan && rm -f .terraform.lock.hcl"
+alias clear-tf="rm -rf .terraform && rm -f tfplan && rm -f .terraform.lock.hcl"
 
 # docker
 de () { docker exec -it "$@" /bin/bash; }
