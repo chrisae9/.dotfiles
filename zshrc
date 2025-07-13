@@ -18,6 +18,7 @@ zstyle ':omz:update' mode disabled
 ZSH_CUSTOM=~/.dotfiles/custom
 ZSH_THEME="chis"
 plugins=(
+    aichat
     git 
     brew 
     direnv 
