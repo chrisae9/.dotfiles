@@ -16,6 +16,8 @@
     ~/.gnupg/gpg-agent.conf:
       force: true
       create: true
+    ~/.tmux.conf:
+      force: true
     ~/Library/Application Support/k9s/plugins.yaml:
       if: '[ `uname` = Darwin ]'
       force: true
