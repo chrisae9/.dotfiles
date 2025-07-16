@@ -82,3 +82,7 @@ alias gr='git reset HEAD^'
 alias grh='git reset --hard HEAD'
 alias grh1='git reset --hard HEAD~1'
 alias gdr='echo "dry run" | gpg --clearsign'
+
+alias tn="tmux new -s code"
+alias ta="tmux a"
+
