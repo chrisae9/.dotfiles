@@ -36,14 +36,20 @@ dee () { docker exec -it "$@" /bin/sh; }
 alias dtf="docker run --rm --user $(id -u):$(id -g) -v $(pwd):/workdir hashicorp/terraform:latest fmt -recursive /workdir"
 alias dcd='docker compose down'
 alias dck='docker compose kill'
+alias dcl='docker-compose logs -f'
 alias dcu='docker compose up -d'
 alias dcb='docker compose build'
+alias dcbnc='docker compose build --no-cache'
 alias dcub='docker compose up --build -d'
+alias dcub='docker compose up --build -d'
+alias dcdub='docker compose down && docker compose up --build -d' 
+alias dcubnc='docker compose build --no-cache && docker compose up -d'
+alias dcdubnc='docker compose down && docker compose build --no-cache && docker compose up -d' 
+
 dcubl() { docker compose up --build "$@" -d && docker compose logs -f "$@"; }
 
 dcdu() { docker compose down "$@" && docker compose up -d "$@"; }
 dcul() { docker compose up -d "$@" && docker compose logs -f "$@"; }
-alias dcl='docker-compose logs -f'
 dcdul () { docker compose down "$@" && docker compose up -d "$@" && docker compose logs -f "$@"; }
 
 dcup() { docker compose --profile "$@" up -d; }
