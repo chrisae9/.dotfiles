@@ -40,6 +40,7 @@ plugins=(
     gpg-agent
     zsh-interactive-cd
     ollama
+    zoxide
     )
 
 # Check if running on Steam Deck
