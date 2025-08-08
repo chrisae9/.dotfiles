@@ -73,6 +73,14 @@ ci() {
     fi
 }
 
+cu() {
+    if [[ $# -eq 0 ]]; then
+        cursor --reuse-window .
+    else
+        cursor "$@"
+    fi
+}
+
 # aider.chat
 alias a="aider"
 aider-exclude() {
