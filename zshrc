@@ -18,29 +18,6 @@ zstyle ':omz:update' mode disabled
 ZSH_CUSTOM=~/.dotfiles/custom
 ZSH_THEME="chis"
 plugins=(
-    aichat
-    git 
-    brew 
-    direnv 
-    kube-ps1 
-    kubectl 
-    kubectx 
-    zsh-autosuggestions 
-    emoji 
-    sudo 
-    aws-vault 
-    nvm 
-    npm 
-    fluxcd 
-    fzf 
-    stern
-    terraform
-    gh
-    k9s
-    gpg-agent
-    zsh-interactive-cd
-    ollama
-    zoxide
     )
 
 # Check if running on Steam Deck
@@ -80,35 +57,6 @@ cu() {
         cursor "$@"
     fi
 }
-
-# aider.chat
-alias a="aider"
-aider-exclude() {
-  [[ -d .git ]] || { echo "Not in a Git repo."; return 1; }
-  grep -q '^\.aider\*' .git/info/exclude 2>/dev/null || echo ".aider*" >> .git/info/exclude
-  echo ".aider* ensured in .git/info/exclude"
-}
-
-ad() {
-  # Define list of models
-  models=(
-    "ollama_chat/Mistral-small:latest"
-    "ollama_chat/qwen2.5-coder:32b"
-    "ollama_chat/gemma3:27b"
-    "ollama_chat/qwq:latest"
-    "openrouter/deepseek/deepseek-r1:free"
-    "openrouter/anthropic/claude-3.7-sonnet"
-    "openrouter/google/gemini-2.0-flash-001"
-  )
-  
-  # Select model
-  model=$(printf '%s\n' "${models[@]}" | fzf --height 30% --border --prompt="AI Model: ")
-  [[ -z "$model" ]] && return 1
-  
-  # Run aider with selected model
-  AIDER_MODEL=$model aider "$@"
-}
-
 # History Configuration
 setopt HIST_EXPIRE_DUPS_FIRST  # Expire duplicate events first when trimming history
 setopt HIST_FIND_NO_DUPS       # Do not display previously found event
@@ -132,7 +80,9 @@ if [[ -n $commands[kubecolor] ]]; then
 fi
 
 alias list-clusters='aws eks list-clusters'
-alias use-cluster='aws eks --region us-east-2 update-kubeconfig --name $1'
+use-cluster() {
+    aws eks --region us-east-2 update-kubeconfig --name "$1"
+}
 
 # Function to fetch and display active colors from cluster URLs
 cluster-color() {
