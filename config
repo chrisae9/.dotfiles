@@ -23,3 +23,5 @@ Host adeck
 Host macbook-air
     user chris
     hostname macbook-air
+    IdentityFile ~/.ssh/id_rsa
+    IdentitiesOnly yes
