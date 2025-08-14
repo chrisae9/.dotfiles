@@ -38,6 +38,7 @@ plugins=(
     gpg-agent
     zsh-interactive-cd
     ollama
+    ai-suggest
     )
 
 # Check if running on Steam Deck
