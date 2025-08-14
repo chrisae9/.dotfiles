@@ -18,6 +18,26 @@ zstyle ':omz:update' mode disabled
 ZSH_CUSTOM=~/.dotfiles/custom
 ZSH_THEME="chis"
 plugins=(
+    git 
+    brew 
+    direnv 
+    kube-ps1 
+    kubectl 
+    kubectx 
+    zsh-autosuggestions 
+    emoji 
+    sudo 
+    aws-vault 
+    nvm 
+    npm 
+    fluxcd 
+    fzf 
+    terraform
+    gh
+    k9s
+    gpg-agent
+    zsh-interactive-cd
+    ollama
     )
 
 # Check if running on Steam Deck
