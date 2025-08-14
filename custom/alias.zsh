@@ -129,5 +129,18 @@ _ezp() {
     _describe 'plugins' plugins
 }
 
+function ai_suggest() {
+  local prompt="$BUFFER"
+  local suggestion=$(curl -s http://127.0.0.1:11434/api/generate \
+    -d "{\"model\": \"gpt-oss\", \"prompt\": \"Suggest the next shell command after: $prompt\"}" \
+    | jq -r '.response' | tr -d '\n')
+  if [[ -n "$suggestion" ]]; then
+    BUFFER="$suggestion"
+    CURSOR=$#BUFFER
+  fi
+}
+zle -N ai_suggest
+bindkey '^g' ai_suggest   # Press Ctrl+G to get an AI completion
+
 compdef _ezp ezp
 
