@@ -92,3 +92,6 @@ alias gdr='echo "dry run" | gpg --clearsign'
 alias tn="tmux new -s code"
 alias ta="tmux a"
 
+alias ca="cursor-agent"
+alias car="cursor-agent --resume"
+
