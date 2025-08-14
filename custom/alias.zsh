@@ -95,3 +95,39 @@ alias ta="tmux a"
 alias ca="cursor-agent"
 alias car="cursor-agent --resume"
 
+# Edit plugin files
+ezp() {
+    local plugins_dir="$HOME/.dotfiles/custom/plugins"
+    
+    if [[ $# -eq 0 ]]; then
+        # No arguments - use fzf to select
+        local plugin=$(find "$plugins_dir" -maxdepth 1 -type d -exec basename {} \; | grep -v "^plugins$" | sort | fzf --prompt="Select plugin: ")
+        if [[ -n "$plugin" ]]; then
+            local plugin_file="$plugins_dir/$plugin/$plugin.plugin.zsh"
+            if [[ -f "$plugin_file" ]]; then
+                vim "$plugin_file"
+            else
+                echo "Plugin file not found: $plugin_file"
+            fi
+        fi
+    else
+        # Argument provided - edit directly
+        local plugin="$1"
+        local plugin_file="$plugins_dir/$plugin/$plugin.plugin.zsh"
+        if [[ -f "$plugin_file" ]]; then
+            vim "$plugin_file"
+        else
+            echo "Plugin file not found: $plugin_file"
+        fi
+    fi
+}
+
+# Tab completion for ezp
+_ezp() {
+    local plugins_dir="$HOME/.dotfiles/custom/plugins"
+    local plugins=($(find "$plugins_dir" -maxdepth 1 -type d -exec basename {} \; | grep -v "^plugins$" | sort))
+    _describe 'plugins' plugins
+}
+
+compdef _ezp ezp
+
