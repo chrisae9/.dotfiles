@@ -131,3 +131,4 @@ _ezp() {
 
 compdef _ezp ezp
 
+alias playwright-start='npx @playwright/mcp@latest --port 8931 --extension'
