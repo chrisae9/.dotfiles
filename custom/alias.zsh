@@ -132,3 +132,8 @@ _ezp() {
 compdef _ezp ezp
 
 alias playwright-start='npx @playwright/mcp@latest --port 8931 --extension'
+
+
+alias dev-up='devcontainer up --workspace-folder .'
+alias dev-down='devcontainer down --workspace-folder .'
+alias dev-exec='devcontainer exec --workspace-folder . /bin/zsh'
