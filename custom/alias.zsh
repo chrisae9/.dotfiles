@@ -24,7 +24,7 @@ alias ezl='vim ~/.zshrc.local'
 alias et='vim ~/.tmux.conf'
 alias st='tmux source ~/.tmux.conf'
 alias sz='source ~/.zshrc'
-alias hz='vim ~/.histfile'
+alias hz='vim ~/.zsh_history'
 alias sc='vim ~/.ssh/config'
 
 alias clear-tf="rm -rf .terraform && rm -f tfplan && rm -f .terraform.lock.hcl"
