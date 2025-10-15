@@ -131,7 +131,7 @@ _ezp() {
 
 compdef _ezp ezp
 
-alias playwright-start='npx @playwright/mcp@latest --allowed-hosts="macbook-air:8931,100.111.27.89:8931" --port 8931 --extension'
+alias playwright-start='npx @playwright/mcp@latest --allowed-hosts="macbook-air:8931,100.111.27.89:8931,localhost:8931" --port 8931 --extension'
 
 
 alias dev-up='devcontainer up --workspace-folder .'
